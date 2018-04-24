@@ -65,3 +65,4 @@ C:\Users\Tjibbe\Documents\GitHub\unityproject\Interaction-layer\Temp\bin\Debug\U
 C:\Users\Tjibbe\Documents\GitHub\unityproject\Interaction-layer\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\Tjibbe\Documents\GitHub\unityproject\Interaction-layer\obj\Debug\Assembly-CSharp.dll
 C:\Users\Tjibbe\Documents\GitHub\unityproject\Interaction-layer\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Tjibbe\Documents\GitHub\unityproject\Interaction-layer\Temp\bin\Debug\UnityEditor.Android.Extensions.dll

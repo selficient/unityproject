@@ -2,30 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Events;
+using Task;
+using AssemblyCSharp.BusinessLayer.Domain;
 
-public class DataService : MonoBehaviour {
-    string uri = "http://localhost:3000/service/getallhardware?apikey=kdfjadslj2xk";
+namespace Business {
+	
+	public class DataService : MonoBehaviour, IDataService{
+		//string uri = "http://localhost:3000/service/getallhardware?apikey=kdfjadslj2xk";
 
-    // Use this for initialization
-    void Start () {
-        StartCoroutine(GetRequest(uri));
+		[SerializeField] private string uri;
+		private IDataService serviceImplementation;
+		// Use this for initialization
 
-        
-    }
-    IEnumerator GetRequest(string uri)
-    {
-		UnityWebRequest www = UnityWebRequest.Get (uri);
-		yield return www.Send();
-
-		if(www.isNetworkError || www.isHttpError) {
-			Debug.Log(www.error);
+		void Start () {
+			serviceImplementation = new TestDataService ();
+			StartCoroutine(GetRequest(uri));
 		}
-		else {
-			Debug.Log (www.downloadHandler.text);
+		// Update is called once per frame
+		void Update () {
+
 		}
-    }
-    // Update is called once per frame
-    void Update () {
-		
+
+		#region IDataService implementation
+		public IEnumerator GetRequest (string uri)
+		{
+			return this.serviceImplementation.GetRequest (uri);
+		}
+		#endregion
 	}
+
 }
