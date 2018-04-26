@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Task;
-using AssemblyCSharp.BusinessLayer.Domain;
+using Business.Domain;
 
 namespace Presentation {
 	/*
@@ -13,10 +13,10 @@ namespace Presentation {
 	public class HardwareBuilder : MonoBehaviour {
 		// bouw de hardware laag op het moment dat de data is ingeladen.
 		private UnityAction<System.Object> buildHardwareLayer;
-		public GameObject hardwareObject;
+		public GameObject sensorPrefab;
 		void Awake() {
 
-			buildHardwareLayer = new UnityAction<System.Object> (LoadHardwareObjects);
+			buildHardwareLayer = new UnityAction<System.Object> (BuildArea);
 		}
 		// Use this for initialization
 		void Start () {
@@ -25,21 +25,30 @@ namespace Presentation {
 		// "triggerHardwareBuild" wordt aangeroepen vanuit het DataEvent in de TaskLayer
 	
 		void OnEnable(){
-			EventManager.StartListening ("triggerHardwareBuild", LoadHardwareObjects);	
+			EventManager.StartListening ("triggerHardwareBuild", BuildArea);	
 
 		}
 		void Disable(){
-			EventManager.StopListening ("triggerHardwareBuild", LoadHardwareObjects);
+			EventManager.StopListening ("triggerHardwareBuild", BuildArea);
 		}
 		/*
 		 * Wordt aangeroepen als de data beschikbaar is (Vanuit de Tasklayer).
+		 * Initieert de posities van de prefabs.
+		 * Kijkt voor het type om welk prefab te initieren.
 		 */
-		void LoadHardwareObjects (System.Object hardwareList) {
+		void BuildArea (System.Object area) { // TODO: Support voor andere dingen dan Sensors toevoegen.
 			print ("Build hardware layer here!");
-			List<Hardware> hardwares = hardwareList as List<Hardware>;
+			Area newArea = area as Area;
+			Hardware[] hardwares = newArea.hardwareList;
+			GameObject areaObject = GameObject.Find (newArea.name);
 			foreach (Hardware hardware in hardwares) {
-				hardwareObject.gameObject.name = hardware.name;
-				Instantiate (hardwareObject, new Vector3 (hardware.x, hardware.y, hardware.z), Quaternion.identity);
+				sensorPrefab.gameObject.name = hardware.id;
+				print (hardware.type.name);
+				if (hardware.type.name == "Sensor") {
+					var obj = Instantiate (sensorPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+					obj.transform.parent = areaObject.transform;
+					obj.transform.localPosition = new Vector3 (hardware.x, hardware.y, hardware.z); // zet relatief tot room
+				}
 			}
 		}
 

@@ -1,18 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System;
 
-namespace AssemblyCSharp.BusinessLayer.Domain {
+namespace Business.Domain {
 	[Serializable]
 	public class Hardware {
-		public int id;
-		public string tag;
-		public string name;
+		public string id;
+ 		public string name;
+
+		public List<Interaction> interactions;
+		public State state;
+		public Type type;
 		public int x; 
 		public int y; 
 		public int z;
 		public Hardware() {
+		}
+		public override string ToString ()
+		{
+			String debug =  "Name: " + name + " id " + id + " \n Type: " + type + " \n ";
+			foreach (Interaction interaction in interactions) {
+				debug +="Interactions: name: " + interaction.name;
+				foreach (State action in interaction.actions) {
+					debug += " Interaction action: code: " + action.code + " Omschrijving: " + action.description;
+				}
+			}
+			return debug;
 		}
 	}
 }

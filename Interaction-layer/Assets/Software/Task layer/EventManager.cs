@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using AssemblyCSharp.BusinessLayer.Domain;
 
 namespace Task { 
 	public class SelficientEvent : UnityEvent<System.Object> {
