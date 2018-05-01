@@ -1,0 +1,452 @@
+fileFormatVersion: 2
+guid: 5533529c888e06148bb2cd9170ead77b
+timeCreated: 1510225011
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: -4000010
+    100002: 00_beplating
+    100004: 00_metaal_generiek
+    100006: 00_porcelein_wit
+    100008: Aluminum
+    100010: chroom mat
+    100012: Deur frame
+    100014: Deur Right
+    100016: Deur Right001
+    100018: Deur Right002
+    100020: Deur005
+    100022: Deur006
+    100024: Deur007
+    100026: Deur008
+    100028: Deur1_left
+    100030: Deur1_right
+    100032: Deur2
+    100034: Deur3
+    100036: Deur4
+    100038: Deur4 1
+    100040: Deur5
+    100042: Deur5 Right
+    100044: Deur5 Right001
+    100046: Deur5 Right002
+    100048: Deur5_left
+    100050: Deur5_right
+    100052: ding
+    100054: ding3
+    100056: Dingetjes
+    100058: Finished LaminateFloor
+    100060: Frame
+    100062: Frame 1
+    100064: Frameding
+    100066: Frameding 1
+    100068: Framepje
+    100070: Frimgding
+    100072: Geberit_PE-HD, Black
+    100074: Glas
+    100076: Glas 1
+    100078: Glass
+    100080: Glass 1
+    100082: Groep deuren
+    100084: //RootNode
+    100086: IFC Surface Style
+    100088: ISR_Dakbedekking
+    100090: ISR_Hardhout
+    100092: ISR_Hardhout_Azobe
+    100094: ISR_Hout
+    100096: ISR_Hout_Grenen
+    100098: ISR_houtvezel isolatie
+    100100: ISR_Isolatie
+    100102: ISR_Kozijn
+    100104: ISR_Kunststof_wit
+    100106: ISR_kurk isolatie
+    100108: ISR_Multiplex
+    100110: ISR_Multiplex - wit
+    100112: ISR_RAL 7016
+    100114: Laminate, Ivory, Matte
+    100116: Laminate, Navy
+    100118: Plastic Black
+    100120: Plastic White
+    100122: Plastic, Opaque Black
+    100124: RAL 6015
+    100126: RAL 7016
+    100128: "RAL 9001 - Cr\xE8mewit"
+    100130: RAL 9007
+    100132: RAL 9011
+    100134: satijnglas groen
+    100136: Steel, Paint Finish, Blue
+    100138: unknown
+    100140: unknown 2899
+    100142: unknown 3060
+    100144: unknown 3235
+    100146: unknown 3362
+    100148: unknown 3535
+    100150: unknown 4219
+    100152: unknown 504
+    400000: -4000010
+    400002: 00_beplating
+    400004: 00_metaal_generiek
+    400006: 00_porcelein_wit
+    400008: Aluminum
+    400010: chroom mat
+    400012: Deur frame
+    400014: Deur Right
+    400016: Deur Right001
+    400018: Deur Right002
+    400020: Deur005
+    400022: Deur006
+    400024: Deur007
+    400026: Deur008
+    400028: Deur1_left
+    400030: Deur1_right
+    400032: Deur2
+    400034: Deur3
+    400036: Deur4
+    400038: Deur4 1
+    400040: Deur5
+    400042: Deur5 Right
+    400044: Deur5 Right001
+    400046: Deur5 Right002
+    400048: Deur5_left
+    400050: Deur5_right
+    400052: ding
+    400054: ding3
+    400056: Dingetjes
+    400058: Finished LaminateFloor
+    400060: Frame
+    400062: Frame 1
+    400064: Frameding
+    400066: Frameding 1
+    400068: Framepje
+    400070: Frimgding
+    400072: Geberit_PE-HD, Black
+    400074: Glas
+    400076: Glas 1
+    400078: Glass
+    400080: Glass 1
+    400082: Groep deuren
+    400084: //RootNode
+    400086: IFC Surface Style
+    400088: ISR_Dakbedekking
+    400090: ISR_Hardhout
+    400092: ISR_Hardhout_Azobe
+    400094: ISR_Hout
+    400096: ISR_Hout_Grenen
+    400098: ISR_houtvezel isolatie
+    400100: ISR_Isolatie
+    400102: ISR_Kozijn
+    400104: ISR_Kunststof_wit
+    400106: ISR_kurk isolatie
+    400108: ISR_Multiplex
+    400110: ISR_Multiplex - wit
+    400112: ISR_RAL 7016
+    400114: Laminate, Ivory, Matte
+    400116: Laminate, Navy
+    400118: Plastic Black
+    400120: Plastic White
+    400122: Plastic, Opaque Black
+    400124: RAL 6015
+    400126: RAL 7016
+    400128: "RAL 9001 - Cr\xE8mewit"
+    400130: RAL 9007
+    400132: RAL 9011
+    400134: satijnglas groen
+    400136: Steel, Paint Finish, Blue
+    400138: unknown
+    400140: unknown 2899
+    400142: unknown 3060
+    400144: unknown 3235
+    400146: unknown 3362
+    400148: unknown 3535
+    400150: unknown 4219
+    400152: unknown 504
+    2300000: -4000010
+    2300002: 00_beplating
+    2300004: 00_metaal_generiek
+    2300006: 00_porcelein_wit
+    2300008: Aluminum
+    2300010: chroom mat
+    2300012: Deur frame
+    2300014: Deur Right
+    2300016: Deur Right001
+    2300018: Deur Right002
+    2300020: Deur005
+    2300022: Deur006
+    2300024: Deur007
+    2300026: Deur008
+    2300028: Deur4 1
+    2300030: Deur5
+    2300032: Deur5 Right
+    2300034: Deur5 Right001
+    2300036: Deur5 Right002
+    2300038: ding
+    2300040: ding3
+    2300042: Dingetjes
+    2300044: Finished LaminateFloor
+    2300046: Frame
+    2300048: Frame 1
+    2300050: Frameding
+    2300052: Frameding 1
+    2300054: Framepje
+    2300056: Frimgding
+    2300058: Geberit_PE-HD, Black
+    2300060: Glas
+    2300062: Glas 1
+    2300064: Glass
+    2300066: Glass 1
+    2300068: IFC Surface Style
+    2300070: ISR_Dakbedekking
+    2300072: ISR_Hardhout
+    2300074: ISR_Hardhout_Azobe
+    2300076: ISR_Hout
+    2300078: ISR_Hout_Grenen
+    2300080: ISR_houtvezel isolatie
+    2300082: ISR_Isolatie
+    2300084: ISR_Kozijn
+    2300086: ISR_Kunststof_wit
+    2300088: ISR_kurk isolatie
+    2300090: ISR_Multiplex
+    2300092: ISR_Multiplex - wit
+    2300094: ISR_RAL 7016
+    2300096: Laminate, Ivory, Matte
+    2300098: Laminate, Navy
+    2300100: Plastic Black
+    2300102: Plastic White
+    2300104: Plastic, Opaque Black
+    2300106: RAL 6015
+    2300108: RAL 7016
+    2300110: "RAL 9001 - Cr\xE8mewit"
+    2300112: RAL 9007
+    2300114: RAL 9011
+    2300116: satijnglas groen
+    2300118: Steel, Paint Finish, Blue
+    2300120: unknown
+    2300122: unknown 2899
+    2300124: unknown 3060
+    2300126: unknown 3235
+    2300128: unknown 3362
+    2300130: unknown 3535
+    2300132: unknown 4219
+    2300134: unknown 504
+    3300000: -4000010
+    3300002: 00_beplating
+    3300004: 00_metaal_generiek
+    3300006: 00_porcelein_wit
+    3300008: Aluminum
+    3300010: chroom mat
+    3300012: Deur frame
+    3300014: Deur Right
+    3300016: Deur Right001
+    3300018: Deur Right002
+    3300020: Deur005
+    3300022: Deur006
+    3300024: Deur007
+    3300026: Deur008
+    3300028: Deur4 1
+    3300030: Deur5
+    3300032: Deur5 Right
+    3300034: Deur5 Right001
+    3300036: Deur5 Right002
+    3300038: ding
+    3300040: ding3
+    3300042: Dingetjes
+    3300044: Finished LaminateFloor
+    3300046: Frame
+    3300048: Frame 1
+    3300050: Frameding
+    3300052: Frameding 1
+    3300054: Framepje
+    3300056: Frimgding
+    3300058: Geberit_PE-HD, Black
+    3300060: Glas
+    3300062: Glas 1
+    3300064: Glass
+    3300066: Glass 1
+    3300068: IFC Surface Style
+    3300070: ISR_Dakbedekking
+    3300072: ISR_Hardhout
+    3300074: ISR_Hardhout_Azobe
+    3300076: ISR_Hout
+    3300078: ISR_Hout_Grenen
+    3300080: ISR_houtvezel isolatie
+    3300082: ISR_Isolatie
+    3300084: ISR_Kozijn
+    3300086: ISR_Kunststof_wit
+    3300088: ISR_kurk isolatie
+    3300090: ISR_Multiplex
+    3300092: ISR_Multiplex - wit
+    3300094: ISR_RAL 7016
+    3300096: Laminate, Ivory, Matte
+    3300098: Laminate, Navy
+    3300100: Plastic Black
+    3300102: Plastic White
+    3300104: Plastic, Opaque Black
+    3300106: RAL 6015
+    3300108: RAL 7016
+    3300110: "RAL 9001 - Cr\xE8mewit"
+    3300112: RAL 9007
+    3300114: RAL 9011
+    3300116: satijnglas groen
+    3300118: Steel, Paint Finish, Blue
+    3300120: unknown
+    3300122: unknown 2899
+    3300124: unknown 3060
+    3300126: unknown 3235
+    3300128: unknown 3362
+    3300130: unknown 3535
+    3300132: unknown 4219
+    3300134: unknown 504
+    4300000: ISR_houtvezel isolatie
+    4300002: ISR_Multiplex - wit
+    4300004: ISR_Hout
+    4300006: ISR_Multiplex
+    4300008: ISR_Dakbedekking
+    4300010: Aluminum
+    4300012: ISR_Isolatie
+    4300014: ISR_Kozijn
+    4300016: ISR_Hardhout
+    4300018: ISR_kurk isolatie
+    4300020: -4000010
+    4300022: RAL 6015
+    4300024: Finished LaminateFloor
+    4300026: Geberit_PE-HD, Black
+    4300028: Laminate, Ivory, Matte
+    4300030: Laminate, Navy
+    4300032: Plastic, Opaque Black
+    4300034: Steel, Paint Finish, Blue
+    4300036: chroom mat
+    4300038: satijnglas groen
+    4300040: Plastic Black
+    4300042: Plastic White
+    4300044: 00_porcelein_wit
+    4300046: 00_beplating
+    4300048: 00_metaal_generiek
+    4300050: unknown
+    4300052: unknown 504
+    4300054: unknown 2899
+    4300056: unknown 3060
+    4300058: unknown 3235
+    4300060: unknown 3362
+    4300062: unknown 3535
+    4300064: unknown 4219
+    4300066: IFC Surface Style
+    4300068: ISR_Kunststof_wit
+    4300070: ISR_Hardhout_Azobe
+    4300072: ISR_Hout_Grenen
+    4300074: ISR_RAL 7016
+    4300076: RAL 9011
+    4300078: RAL 9007
+    4300080: "RAL 9001 - Cr\xE8mewit"
+    4300082: RAL 7016
+    4300084: Glass
+    4300086: Deur frame
+    4300088: ding
+    4300090: Framepje
+    4300092: Glass
+    4300094: ding3
+    4300096: Dingetjes
+    4300098: Frame
+    4300100: Frameding
+    4300102: Glas
+    4300104: Glas
+    4300106: Frame
+    4300108: Frameding
+    4300110: Frimgding
+    4300112: Deur006
+    4300114: Deur005
+    4300116: Deur4
+    4300118: Deur008
+    4300120: Deur007
+    4300122: Deur5
+    4300124: Deur5 Right
+    4300126: Deur5 Right001
+    4300128: Deur5 Right002
+    4300130: Deur Right
+    4300132: Deur Right001
+    4300134: Deur Right002
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 66b6795c06e73474caf9593b97842f41, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
