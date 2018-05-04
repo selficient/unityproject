@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Task;
 using Business.Domain;
+using VRStandardAssets.Utils;
 
 namespace Presentation {
 	/*
@@ -14,6 +15,8 @@ namespace Presentation {
 		// bouw de hardware laag op het moment dat de data is ingeladen.
 		private UnityAction<System.Object> buildHardwareLayer;
 		public GameObject sensorPrefab;
+		public GameObject doorPrefab;
+		private int interactionLayerId = 14;
 		void Awake() {
 
 			buildHardwareLayer = new UnityAction<System.Object> (BuildArea);
@@ -41,15 +44,42 @@ namespace Presentation {
 			Area newArea = area as Area;
 			Hardware[] hardwares = newArea.hardwareList;
 			GameObject areaObject = GameObject.Find (newArea.name);
-			foreach (Hardware hardware in hardwares) {
-				sensorPrefab.gameObject.name = hardware.id;
-				print (hardware.type.name);
-				if (hardware.type.name == "Sensor") {
-					var obj = Instantiate (sensorPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+			try {
+				foreach (Hardware hardware in hardwares) {
+					if (hardware.type.name == "Sensor") {
+						sensorPrefab.gameObject.name = hardware.id;
+						var obj = Instantiate (sensorPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
+						obj.transform.parent = areaObject.transform;
+						obj.transform.localPosition = new Vector3 (hardware.x, hardware.y, hardware.z); // zet relatief tot room
+					} else if (hardware.type.name == "Door") {
+						/*doorPrefab.gameObject.name = hardware.id;
+					var obj = Instantiate (doorPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
 					obj.transform.parent = areaObject.transform;
 					obj.transform.localPosition = new Vector3 (hardware.x, hardware.y, hardware.z); // zet relatief tot room
+					obj.transform.localEulerAngles = new Vector3(90, 0);*/
+						var door = GameObject.Find (hardware.name); 
+						if (door != null) {
+							door.layer = interactionLayerId; // interaction layer
+							door.SetActive (false);
+							RuntimeAnimatorController deurController = (RuntimeAnimatorController)Resources.Load ("Animation/Deur2");
+							VRInteractiveItem interactiveItem = door.AddComponent<VRInteractiveItem> ();
+							var interactiveDoor = door.AddComponent<InteractiveDeur> ();
+							var animation = door.AddComponent<Animator> ();
+							animation.runtimeAnimatorController = deurController;
+							interactiveDoor.gameObject = door;
+							interactiveDoor.hardware = hardware; 
+							interactiveDoor.m_InteractiveItem = interactiveItem;
+							door.SetActive (true);
+
+						}
+
+					}
 				}
 			}
+			catch(UnityException e) { 
+				print ("Errorrr" + e.Message);
+			}
+
 		}
 
 	}

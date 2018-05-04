@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Sensor
+  - deur
+  - deur2
+  - Deur2
   layers:
   - Default
   - TransparentFX

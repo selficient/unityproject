@@ -10,12 +10,28 @@ namespace Business {
 	
 	public class AreaService : MonoBehaviour{
 		//string uri = "http://localhost:3000/service/getallhardware?apikey=kdfjadslj2xk";
+		private UnityAction<System.Object> saveHardwareState;
 
 		[SerializeField] private string uri;
+		private string stateUri = "http://localhost:3000/service/updatestate?apikey=kdfjadslj2xk";
 		[SerializeField] private string areaId; // TODO: De NoSi zo aanpassen dat er per area in geladen kan worden.
 		private IDataService serviceImplementation;
 		// Use this for initialization
 
+		void Awake(){
+			saveHardwareState = new UnityAction<System.Object> (SaveHardwareState);
+
+		}
+		void OnEnable(){
+			Debug.Log ("works");
+
+			EventManager.StartListening ("updateHardwareState", SaveHardwareState); 
+
+		}
+		void OnDisable(){
+			EventManager.StopListening ("updateHardwareState", SaveHardwareState); 
+
+		}
 		void Start () {
 			serviceImplementation = new HardwareService ();
 			StartCoroutine(AreaLoader(uri));
@@ -27,16 +43,14 @@ namespace Business {
 			return this.serviceImplementation.AreaLoader (uri);
 		}
 
-		private void SaveHardwareState (Hardware hardwareObject)
+		private void SaveHardwareState (System.Object hardwareObject)
 		{
-			throw new System.NotImplementedException ();
+		//	EventManager.TriggerEvent ("showInteractiveLoader", true);
+			Debug.Log ("Save hardware state");
+			StartCoroutine (this.serviceImplementation.SaveHardwareState (hardwareObject, stateUri));
 		}
 		#endregion
 
-		#region Dit is beschikbaar om aangeroepen te worden vanuit de tasklayer.
-		private void SetHardwareState () {
-		}
-		#endregion
 	
 	}
 

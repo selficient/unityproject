@@ -75,7 +75,7 @@ namespace UnityStandardAssets.ImageEffects
             if (_camera == null)
                 _camera = GetComponent<Camera>();
 
-            wasActive = gameObject.activeInHierarchy;
+			wasActive = gameObject.activeInHierarchy;
             CalculateViewProjection ();
             Remember ();
             wasActive = false; // hack to fake position/rotation update and prevent bad blurs

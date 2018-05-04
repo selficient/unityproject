@@ -11,9 +11,9 @@ namespace Business.Domain {
 		public List<Interaction> interactions;
 		public State state;
 		public Type type;
-		public int x; 
-		public int y; 
-		public int z;
+		public float x; 
+		public float y; 
+		public float z;
 		public Hardware() {
 		}
 		public override string ToString ()

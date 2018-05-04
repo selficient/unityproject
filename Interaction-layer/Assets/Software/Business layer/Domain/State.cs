@@ -7,6 +7,7 @@ namespace Business.Domain
 	{
 		public string description;
 		public string code;
+		public string name;
 		public State ()
 		{
 		}

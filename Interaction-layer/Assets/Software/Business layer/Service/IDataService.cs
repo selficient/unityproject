@@ -7,7 +7,7 @@ namespace Business
 	public interface IDataService
 	{
 		IEnumerator AreaLoader(string uri);
-		void SaveHardwareState (Hardware hardwareObject);
+		IEnumerator SaveHardwareState (System.Object hardwareObject, string uri);
 
 	}
 }

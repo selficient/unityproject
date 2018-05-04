@@ -43,7 +43,7 @@ namespace Business
 		}
 
 
-		public void SaveHardwareState (Business.Domain.Hardware hardwareObject)
+		public IEnumerator SaveHardwareState (System.Object hardwareObject, string uri)
 		{
 			throw new NotImplementedException ();
 		}
