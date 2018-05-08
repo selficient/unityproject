@@ -156,12 +156,17 @@
      <Compile Include="Assets\Software\Business layer\Service\HardwareService.cs" />
      <Compile Include="Assets\Software\Business layer\Service\IDataService.cs" />
      <Compile Include="Assets\Software\Business layer\Service\TestDataService.cs" />
+     <Compile Include="Assets\Software\Presentation layer\DoorInteraction.cs" />
      <Compile Include="Assets\Software\Presentation layer\HardwareBuilder.cs" />
+     <Compile Include="Assets\Software\Presentation layer\Interactable.cs" />
+     <Compile Include="Assets\Software\Presentation layer\InteractionLoader.cs" />
      <Compile Include="Assets\Software\Presentation layer\Interactive.cs" />
-     <Compile Include="Assets\Software\Presentation layer\InteractiveDeur.cs" />
+     <Compile Include="Assets\Software\Presentation layer\LampInteraction.cs" />
      <Compile Include="Assets\Software\Presentation layer\LoadingScreen.cs" />
+     <Compile Include="Assets\Software\Presentation layer\ObjectInteraction.cs" />
      <Compile Include="Assets\Software\Task layer\DataEvent.cs" />
      <Compile Include="Assets\Software\Task layer\EventManager.cs" />
+     <Compile Include="Assets\VRMouseLook.cs" />
      <Compile Include="Assets\VRSampleScenes\Scripts\Common\SessionData.cs" />
      <Compile Include="Assets\VRSampleScenes\Scripts\Examples\ExampleRenderScale.cs" />
      <Compile Include="Assets\VRSampleScenes\Scripts\Examples\ExampleRotation.cs" />
@@ -252,7 +257,7 @@
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
-     <None Include="Assets\Software\Presentation layer\Material\Outlined.shader" />
+     <None Include="Assets\Resources\Material\Outlined.shader" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\frag_ao.cginc" />
      <None Include="Assets\Oculus\VR\Resources\Cubemap Blit.shader" />
      <None Include="Assets\_MK\MKGlassFree\Shader\Inc\Surface\MKGlassSurface.cginc" />

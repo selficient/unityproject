@@ -45,8 +45,7 @@ namespace Business {
 
 		private void SaveHardwareState (System.Object hardwareObject)
 		{
-		//	EventManager.TriggerEvent ("showInteractiveLoader", true);
-			Debug.Log ("Save hardware state");
+			EventManager.TriggerEvent ("showInteractiveLoader", true);
 			StartCoroutine (this.serviceImplementation.SaveHardwareState (hardwareObject, stateUri));
 		}
 		#endregion

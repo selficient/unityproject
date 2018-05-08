@@ -5,7 +5,7 @@ namespace Presentation
 {
     // This script is a simple example of how an interactive item can
     // be used to change things on gameobjects by handling events.
-    public class Interactive : MonoBehaviour
+    public class InteractionObject : MonoBehaviour
     {
         [SerializeField] private Material m_NormalMaterial;                
         [SerializeField] private Material m_OverMaterial;                  

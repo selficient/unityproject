@@ -40,9 +40,10 @@ namespace Business {
 			UnityWebRequest www = UnityWebRequest.Post (uri, form);
 			yield return www.SendWebRequest();
 			if (www.isNetworkError || www.isHttpError) {
-				//EventManager.TriggerEvent ("showInteractiveLoader", false);
+				EventManager.TriggerEvent ("showInteractiveLoader", false);
 				Debug.Log(www.downloadHandler.text);
 			} else {
+				EventManager.TriggerEvent ("showInteractiveLoader", false);
 				Debug.Log (www.downloadHandler.text);
 			}
 		}
