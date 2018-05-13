@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114696149650930900}
   - component: {fileID: 114519905599827080}
   m_Layer: 14
-  m_Name: Sensor
+  m_Name: 2342343-646-3432-a382-3828383f
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,11 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d755e68cd92c18147b4068496a88db4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NormalMaterial: {fileID: 2100000, guid: 418cdc8aa00dc1142ab431aa37a2f071, type: 2}
-  m_OverMaterial: {fileID: 2100000, guid: 5de0f9467f8674847a7cb37831d293ed, type: 2}
-  m_ClickedMaterial: {fileID: 2100000, guid: f5e5b1818f5eaf3479870731b9923e91, type: 2}
   m_InteractiveItem: {fileID: 114696149650930900}
-  m_Renderer: {fileID: 23167083351330172}
 --- !u!114 &114696149650930900
 MonoBehaviour:
   m_ObjectHideFlags: 1

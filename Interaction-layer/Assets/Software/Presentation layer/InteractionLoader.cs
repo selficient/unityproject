@@ -12,7 +12,6 @@ namespace Presentation {
 		// Use this for initialization
 		void Start () {
 			showInteractiveLoader = new UnityAction<System.Object> (ShowInteractiveLoader);
-			print ("testtttt");
 			EventManager.StartListening ("showInteractiveLoader", ShowInteractiveLoader);	
 			this.gameObject.SetActive (false);
 
@@ -22,7 +21,6 @@ namespace Presentation {
 		void ShowInteractiveLoader (System.Object showOrHide)
 		{
 			bool response = Convert.ToBoolean(showOrHide);
-			print (response + " interaction loader"); 
 			this.gameObject.SetActive (response);
 		}
 	}

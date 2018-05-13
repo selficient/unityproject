@@ -3,11 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Sensor
-  - deur
-  - deur2
-  - Deur2
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -23,7 +19,7 @@ TagManager:
   - MazeTurretBullet
   - Bg
   - FPSWeapon
-  - Interaction
+  - 
   - 
   - 
   - 

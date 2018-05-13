@@ -5,11 +5,14 @@ using UnityEngine.Events;
 using Task;
 using Business.Domain;
 using VRStandardAssets.Utils;
+using cakeslice;
+using VRStandardAssets.Examples;
 
 namespace Presentation {
 	/*
 	 * Verantwoordelijk voor het bouwen van de GameObjects.
 	 * De GameObjects worden vanuit de Business.Domain.Hardware gegenereerd.
+	 * @author T.J van der Ende
 	 */
 	public class HardwareBuilder : MonoBehaviour {
 		// bouw de hardware laag op het moment dat de data is ingeladen.
@@ -46,11 +49,13 @@ namespace Presentation {
 			GameObject areaObject = GameObject.Find (newArea.name);
 			try {
 				foreach (Hardware hardware in hardwares) {
+
 					if (hardware.type.name == "Sensor") {
 						sensorPrefab.gameObject.name = hardware.id;
 						var obj = Instantiate (sensorPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
 						obj.transform.parent = areaObject.transform;
 						obj.transform.localPosition = new Vector3 (hardware.x, hardware.y, hardware.z); // zet relatief tot room
+
 					} else if (hardware.type.name == "Door" || hardware.type.name == "Light") {
 						/*doorPrefab.gameObject.name = hardware.id;
 					var obj = Instantiate (doorPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
@@ -58,6 +63,7 @@ namespace Presentation {
 					obj.transform.localPosition = new Vector3 (hardware.x, hardware.y, hardware.z); // zet relatief tot room
 					obj.transform.localEulerAngles = new Vector3(90, 0);*/
 						var interactiveElement = GameObject.Find (hardware.name); 
+
 						if (interactiveElement != null) {
 							interactiveElement.layer = interactionLayerId; // interaction layer
 							interactiveElement.SetActive (false);
@@ -78,8 +84,18 @@ namespace Presentation {
 								Light lightObject = interactiveElement.GetComponent<Light>();
 								interactable = new LampInteraction(lightObject);
 							}
-							VRInteractiveItem interactiveItem = interactiveElement.AddComponent<VRInteractiveItem> ();
-							var interactive = interactiveElement.AddComponent<ObjectInteraction> ();
+							//Material material = (Material)Resources.Load ("Material/SensorFocus", typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+
+							VRInteractiveItem interactiveItem = interactiveElement.AddComponent<VRInteractiveItem> (); 
+							// add interactible by gazing
+							InteractionObject interactionObject = interactiveElement.AddComponent<InteractionObject>();
+							interactionObject.m_InteractiveItem = interactiveItem; // add outline effect.
+
+							interactiveElement.AddComponent<Outliner>(); 
+
+
+							// add object specific interactions.
+							ObjectInteraction interactive = interactiveElement.AddComponent<ObjectInteraction> ();
 							interactive.gameObject = interactiveElement;
 							interactive.interactionName = hardware.interactions[0].name;
 							interactive.hardware = hardware; 
@@ -97,6 +113,8 @@ namespace Presentation {
 			}
 
 		}
+
+
 
 	}
 }
