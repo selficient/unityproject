@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114696149650930900}
   - component: {fileID: 114519905599827080}
   m_Layer: 14
-  m_Name: 2342343-646-3432-a382-3828383f
+  m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

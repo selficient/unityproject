@@ -258,6 +258,7 @@
      <Compile Include="Assets\Software\Business layer\Service\IDataService.cs" />
      <Compile Include="Assets\Software\Business layer\Service\TestDataService.cs" />
      <Compile Include="Assets\Software\Presentation layer\ActiveRecticle.cs" />
+     <Compile Include="Assets\Software\Presentation layer\Camera\Cardboard\Autowalk.cs" />
      <Compile Include="Assets\Software\Presentation layer\DoorInteraction.cs" />
      <Compile Include="Assets\Software\Presentation layer\HardwareBuilder.cs" />
      <Compile Include="Assets\Software\Presentation layer\Interactable.cs" />
