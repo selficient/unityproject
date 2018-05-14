@@ -35,17 +35,17 @@ namespace Presentation
 			}
 		}
 
-		public void SetOutlineOn(){
+		public void SetOutlineOn(int color = 0){
 			try {
-				outlineScripts.ForEach (x => x.enabled = true);
+				outlineScripts.ForEach (x => {x.color = color; x.enabled = true; });
 			} catch (NullReferenceException e){
 				Debug.Log ("Voeg een mesh renderer toe aan dit object, om gebruik te maken van de outline functionaliteit"); 
 			}
 
 		}
-		public void SetOutlineOff(){
+		public void SetOutlineOff(int color = 0){
 			try {
-				outlineScripts.ForEach (x => x.enabled = false);
+				outlineScripts.ForEach (x => {x.enabled = false; x.color = color; });
 			} catch (NullReferenceException e){
 				Debug.Log ("Voeg een mesh renderer toe aan dit object, om gebruik te maken van de outline functionaliteit"); 
 

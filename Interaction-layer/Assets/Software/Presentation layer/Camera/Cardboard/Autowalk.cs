@@ -28,6 +28,8 @@ using System.Collections;
 
 public class Autowalk : MonoBehaviour
 {
+	#if !UNITY_EDITOR
+
     private const int RIGHT_ANGLE = 90;
 
     // This variable determinates if the player will move or not 
@@ -115,4 +117,6 @@ public class Autowalk : MonoBehaviour
             transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
         }
     }
+	#endif
+
 }

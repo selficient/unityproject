@@ -13,6 +13,7 @@ namespace Presentation {
 	 * Verantwoordelijk voor het bouwen van de GameObjects.
 	 * De GameObjects worden vanuit de Business.Domain.Hardware gegenereerd.
 	 * @author T.J van der Ende
+	 * TODO: Robuster bouwen door builder pattern of factory pattern door te voeren. 
 	 */
 	public class HardwareBuilder : MonoBehaviour {
 		// bouw de hardware laag op het moment dat de data is ingeladen.
@@ -67,9 +68,14 @@ namespace Presentation {
 						if (interactiveElement != null) {
 							interactiveElement.layer = interactionLayerId; // interaction layer
 							interactiveElement.SetActive (false);
+
+							/**
+							 * Bepaal type interactie (Component gebaseerd of animator gebaseerd
+							 * 
+							*/
 							Interactable interactable = null;
 							if (hardware.type.name == "Door") {
-								RuntimeAnimatorController deurController = (RuntimeAnimatorController)Resources.Load ("Animation/Deur2", typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+								RuntimeAnimatorController deurController = (RuntimeAnimatorController)Resources.Load ("Animation/"+hardware.name, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
 								if(deurController != null) {
 									var animation = interactiveElement.AddComponent<Animator> ();
 									animation.runtimeAnimatorController = deurController;
@@ -80,21 +86,28 @@ namespace Presentation {
 								}
 
 							}
+
 							if(hardware.type.name == "Light") {
 								Light lightObject = interactiveElement.GetComponent<Light>();
 								interactable = new LampInteraction(lightObject);
 							}
-							//Material material = (Material)Resources.Load ("Material/SensorFocus", typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
 
+							/*
+							 * Maak interactief
+							*/
 							VRInteractiveItem interactiveItem = interactiveElement.AddComponent<VRInteractiveItem> (); 
-							// add interactible by gazing
 							InteractionObject interactionObject = interactiveElement.AddComponent<InteractionObject>();
 							interactionObject.m_InteractiveItem = interactiveItem; // add outline effect.
 
+							/**
+							 * Voeg uitlijning toe
+							*/
 							interactiveElement.AddComponent<Outliner>(); 
 
 
-							// add object specific interactions.
+							/**
+							 * Voeg object interactie toe 
+							*/
 							ObjectInteraction interactive = interactiveElement.AddComponent<ObjectInteraction> ();
 							interactive.gameObject = interactiveElement;
 							interactive.interactionName = hardware.interactions[0].name;
