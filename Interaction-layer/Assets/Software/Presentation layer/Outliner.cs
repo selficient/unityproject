@@ -27,27 +27,29 @@ namespace Presentation
 		}
 		private void InitOutlineEffect() {
 			this.outlineScripts = new List<Outline> ();
-			this.outlineScripts.Add (gameObject.AddComponent<Outline> ());
 			if (this.gameObject.transform.childCount > 0) {
 				foreach (Transform child in this.gameObject.transform) {
 					this.outlineScripts.Add (child.gameObject.AddComponent<Outline> ());
 				}
+			} else {
+				this.outlineScripts.Add (gameObject.AddComponent<Outline> ());
+
 			}
 		}
 
 		public void SetOutlineOn(int color = 0){
 			try {
-				outlineScripts.ForEach (x => {x.color = color; x.enabled = true; });
+				outlineScripts.ForEach (x => {x.color = color; x.eraseRenderer = false; });
 			} catch (NullReferenceException e){
-				Debug.Log ("Voeg een mesh renderer toe aan dit object, om gebruik te maken van de outline functionaliteit"); 
+				Debug.Log ("Voeg een mesh renderer toe aan dit object, om gebruik te maken van de outline functionaliteit: " + this.gameObject.name); 
 			}
 
 		}
 		public void SetOutlineOff(int color = 0){
 			try {
-				outlineScripts.ForEach (x => {x.enabled = false; x.color = color; });
+				outlineScripts.ForEach (x => {x.eraseRenderer = true; x.color = color; });
 			} catch (NullReferenceException e){
-				Debug.Log ("Voeg een mesh renderer toe aan dit object, om gebruik te maken van de outline functionaliteit"); 
+				Debug.Log ("Voeg een mesh renderer toe aan dit object, om gebruik te maken van de outline functionaliteit: " + this.gameObject.name); 
 
 			}
 

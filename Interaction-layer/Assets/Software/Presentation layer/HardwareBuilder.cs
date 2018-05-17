@@ -51,60 +51,44 @@ namespace Presentation {
 			try {
 				foreach (Hardware hardware in hardwares) {
 
-					if (hardware.type.name == "Sensor") {
+					/*if (hardware.type.name == "Sensor") {
 						sensorPrefab.gameObject.name = hardware.id;
 						var obj = Instantiate (sensorPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
 						obj.transform.parent = areaObject.transform;
 						obj.transform.localPosition = new Vector3 (hardware.x, hardware.y, hardware.z); // zet relatief tot room
 
-					} else if (hardware.type.name == "Door" || hardware.type.name == "Light") {
+					} else if (hardware.type.name == "Door" || hardware.type.name == "Light") {*/
 						/*doorPrefab.gameObject.name = hardware.id;
 					var obj = Instantiate (doorPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
 					obj.transform.parent = areaObject.transform;
 					obj.transform.localPosition = new Vector3 (hardware.x, hardware.y, hardware.z); // zet relatief tot room
 					obj.transform.localEulerAngles = new Vector3(90, 0);*/
-						var interactiveElement = GameObject.Find (hardware.name); 
+					var interactiveElement = GameObject.Find (hardware.name); 
 
-						if (interactiveElement != null) {
-							interactiveElement.layer = interactionLayerId; // interaction layer
-							interactiveElement.SetActive (false);
+					if (interactiveElement != null) {
+						interactiveElement.layer = interactionLayerId; // interaction layer
+						interactiveElement.SetActive (false);
 
-							/**
-							 * Bepaal type interactie (Component gebaseerd of animator gebaseerd
-							 * 
-							*/
-							Interactable interactable = null;
-							if (hardware.type.name == "Door") {
-								RuntimeAnimatorController deurController = (RuntimeAnimatorController)Resources.Load ("Animation/"+hardware.name, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
-								if(deurController != null) {
-									var animation = interactiveElement.AddComponent<Animator> ();
-									animation.runtimeAnimatorController = deurController;
-									interactable = new DoorInteraction(animation);
+						/*
+						 * Maak interactief
+						*/
+						VRInteractiveItem interactiveItem = interactiveElement.AddComponent<VRInteractiveItem> (); 
+						InteractionObject interactionObject = interactiveElement.AddComponent<InteractionObject>();
+						interactionObject.m_InteractiveItem = interactiveItem; // add outline effect.
 
-								}else {
-									throw new UnityException("Animatie voor deur kon niet gevonden worden"); 
-								}
-
-							}
-
-							if(hardware.type.name == "Light") {
-								Light lightObject = interactiveElement.GetComponent<Light>();
-								interactable = new LampInteraction(lightObject);
-							}
-
-							/*
-							 * Maak interactief
-							*/
-							VRInteractiveItem interactiveItem = interactiveElement.AddComponent<VRInteractiveItem> (); 
-							InteractionObject interactionObject = interactiveElement.AddComponent<InteractionObject>();
-							interactionObject.m_InteractiveItem = interactiveItem; // add outline effect.
-
-							/**
-							 * Voeg uitlijning toe
-							*/
-							interactiveElement.AddComponent<Outliner>(); 
+						/**
+						 * Voeg uitlijning toe
+						*/
+						interactiveElement.AddComponent<Outliner>(); 
 
 
+
+						/**
+						 * Bepaal type interactie (Component gebaseerd of animator gebaseerd
+						 * 
+						*/
+						Interactable interactable = InteractionFactory.GetInteraction(interactiveElement, hardware);
+						if (interactable != null) {
 							/**
 							 * Voeg object interactie toe 
 							*/
@@ -114,11 +98,13 @@ namespace Presentation {
 							interactive.hardware = hardware; 
 							interactive.m_InteractiveItem = interactiveItem;
 							interactive.interactable = interactable;
-							interactiveElement.SetActive (true);
-
 						}
+							
+						interactiveElement.SetActive (true);
 
 					}
+
+
 				}
 			}
 			catch(UnityException e) { 

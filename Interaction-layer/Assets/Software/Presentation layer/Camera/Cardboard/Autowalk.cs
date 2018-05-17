@@ -28,8 +28,6 @@ using System.Collections;
 
 public class Autowalk : MonoBehaviour
 {
-	#if !UNITY_EDITOR
-
     private const int RIGHT_ANGLE = 90;
 
     // This variable determinates if the player will move or not 
@@ -57,6 +55,8 @@ public class Autowalk : MonoBehaviour
 
     [Tooltip("This is the fixed y-coordinate.")]
     public float yOffset;
+
+	#if !UNITY_EDITOR
 
     void Start()
     {
@@ -118,5 +118,4 @@ public class Autowalk : MonoBehaviour
         }
     }
 	#endif
-
 }
