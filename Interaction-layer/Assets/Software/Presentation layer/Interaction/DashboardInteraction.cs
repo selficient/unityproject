@@ -5,7 +5,7 @@ using Presentation.Dashboard;
 using Business.Domain;
 
 namespace Presentation {
-	public class DashboardInteraction : Interactable {
+	public class DashboardInteraction : Interactable{
 
 		GameObject sensor;
 		Hardware hardware;
@@ -13,6 +13,7 @@ namespace Presentation {
 		private GameObject dashboard;
 		public DashboardInteraction(GameObject sensor, Hardware hardware){
 			this.sensor = sensor;
+			this.hardware = hardware;
 			this.renderer = new DashboardRenderer ();
 		}
 
@@ -37,6 +38,7 @@ namespace Presentation {
 			//throw new System.NotImplementedException ();
 			dashboard = this.renderer.InitializeDashboard(this.sensor, this.hardware);
 			dashboard.SetActive (false);
+
 		}
 
 		#endregion

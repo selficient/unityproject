@@ -7,11 +7,13 @@ using UnityEngine.UI;
  * Renderer die automatisch dashboard genereert.
  * @author T.J van der Ende
  */
+using System.Collections;
+
+
 namespace Presentation.Dashboard
 {
-	public class DashboardRenderer : MonoBehaviour
+	public class DashboardRenderer
 	{
-
 		public GameObject InitializeDashboard(GameObject hardwareObject, Hardware hardware){
 			
 			Material renderOnTop = Resources.Load("Material/DashboardRenderOnTop", typeof(Material)) as Material;
@@ -33,10 +35,12 @@ namespace Presentation.Dashboard
 			GameObject infoPanel = RenderPanel (renderOnTop, newCanvas.name + "-info", backgroundColor);
 			VerticalLayoutGroup vGroup = infoPanel.AddComponent<VerticalLayoutGroup> ();
 			VerticalLayoutGroup vGroupData = dataPanel.AddComponent<VerticalLayoutGroup> ();
-			vGroup.padding.left = -25;
+			vGroup.padding.left = 20;
+			vGroup.padding.right = 20;
 			vGroup.padding.top = 20;
 
-			vGroupData.padding.left = -25;
+			vGroupData.padding.left = 20;
+			vGroupData.padding.right = 20;
 			vGroupData.padding.top = 20;
 
 
@@ -66,23 +70,31 @@ namespace Presentation.Dashboard
 
 			RecalculateCanvasPosition (newCanvas, hardwareObject);
 			AddBillboardRenderer (newCanvas);
+
+
 			return newCanvas;
 		}
 		public void RenderContent(GameObject infoPanel, GameObject dataPanel, Hardware hardware, Material material){
 			// load all "static" data
-			GameObject hardwareTitle = this.TextObject(infoPanel, infoPanel.name+"-hardwareTitle", "Name: weatherscanner", material);
-			GameObject infoTitle = this.TextObject(infoPanel, infoPanel.name+"-title", "Info", material);
-			GameObject hardwareType = this.TextObject(infoPanel, infoPanel.name+"-hardwareType", "Type: Sensor", material);
+			GameObject hardwareTitle = this.RenderText(infoPanel, infoPanel.name+"-hardwareTitle", "Name: "+hardware.name, material);
+			GameObject infoTitle = this.RenderText(infoPanel, infoPanel.name+"-title", "Info", material);
+			GameObject hardwareType = this.RenderText(infoPanel, infoPanel.name+"-hardwareType", "Type: "+hardware.type.name, material);
 
-			GameObject dataTitle = this.TextObject(infoPanel, dataPanel.name+"-title", "Data", material);
+			GameObject dataTitle = this.RenderText(infoPanel, dataPanel.name+"-title", "Data", material);
 
 			infoTitle.transform.SetParent (infoPanel.transform, false);
 			hardwareTitle.transform.SetParent (infoPanel.transform, false);
 			hardwareType.transform.SetParent (infoPanel.transform, false);
 
-			dataTitle.transform.SetParent (dataPanel.transform, false);
+			Sprite testSprite = Resources.Load ("Textures/Test1", typeof(Sprite)) as Sprite;
+			GameObject image1 = this.RenderImage (dataPanel, dataPanel.name + "-data-whatever", testSprite, material);
+			GameObject image2 = this.RenderImage (dataPanel, dataPanel.name + "-data-whatever2", testSprite, material);
 
-			// load async data from server
+			dataTitle.transform.SetParent (dataPanel.transform, false);
+			image1.transform.SetParent (dataPanel.transform, false);
+			image2.transform.SetParent (dataPanel.transform, false);
+
+
 		}
 		private void SetCanvasResolution(GameObject dashboard, float height, float width){
 			this.ResizeObject (dashboard, height, width);
@@ -138,13 +150,13 @@ namespace Presentation.Dashboard
 			i.material = renderOnTop;
 			return panel;
 		}
-		private GameObject TextObject(GameObject dashboard, String name, String text, Material material,int fontSize = 50){
+		private GameObject RenderText(GameObject dashboard, String name, String text, Material material,int fontSize = 50){
 
 			GameObject newTextObject = new GameObject (name);
 			Text myText = newTextObject.AddComponent<Text>();
 			myText.fontSize = fontSize;
 			myText.color = Color.black;
-			myText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
+			myText.font = Resources.Load ("Fonts/Roboto-Medium", typeof(Font)) as Font;
 			myText.transform.localEulerAngles = new Vector3 (0.0F, 180.0F, 0.0F);
 			myText.material = material;
 			myText.resizeTextForBestFit = true;
@@ -152,6 +164,14 @@ namespace Presentation.Dashboard
 			return newTextObject;
 		}
 
+		private GameObject RenderImage (GameObject dashboard, String name, Sprite resourceToLoad, Material material){
+			GameObject newImageObject = new GameObject (name);
+			Image imageObject = newImageObject.AddComponent<Image> ();
+			imageObject.sprite = resourceToLoad;
+			imageObject.material = material;
+			imageObject.preserveAspect = true;
+			return newImageObject;
+		}
 
 		/*
 		 * Het is lastig om een positie te vinden van een sensor / hardware object.
@@ -165,6 +185,9 @@ namespace Presentation.Dashboard
 			dashboard.transform.localPosition = new Vector3 (calculatedPos, 0.0F, 0.0F);
 
 		}
+
+		
+
 	}
 }
 
