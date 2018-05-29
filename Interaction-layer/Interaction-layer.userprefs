@@ -1,8 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Software\Presentation layer\Interaction\Dashboard\DashboardRenderer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Software\Presentation layer\Camera\Cardboard\Autowalk.cs">
     <Files>
-      <File FileName="Assets\Software\Presentation layer\Interaction\Dashboard\DashboardRenderer.cs" Line="88" Column="4" />
+      <File FileName="Assets\Software\Business layer\Service\AreaService.cs" Line="1" Column="1" />
+      <File FileName="Assets\Software\Business layer\Service\IDataService.cs" Line="1" Column="1" />
+      <File FileName="Assets\Software\Business layer\Service\HardwareService.cs" Line="1" Column="1" />
+      <File FileName="Assets\Software\Presentation layer\Interaction\DashboardInteraction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Software\Presentation layer\Interaction\Dashboard\DashboardRenderer.cs" Line="143" Column="7" />
+      <File FileName="Assets\Software\Presentation layer\HardwareBuilder.cs" Line="57" Column="28" />
+      <File FileName="Assets\Software\Presentation layer\Camera\Cardboard\Autowalk.cs" Line="59" Column="2" />
+      <File FileName="Assets\Software\Presentation layer\Camera\Cardboard\ARTrackingController.cs" Line="132" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -8,31 +8,44 @@ using UnityEngine.UI;
  * @author T.J van der Ende
  */
 using System.Collections;
+using Task;
+using UnityEngine.Events;
 
 
 namespace Presentation.Dashboard
 {
 	public class DashboardRenderer
 	{
-		public GameObject InitializeDashboard(GameObject hardwareObject, Hardware hardware){
-			
-			Material renderOnTop = Resources.Load("Material/DashboardRenderOnTop", typeof(Material)) as Material;
+		private UnityAction<System.Object> saveHardwareState;
+
+		private GameObject dataPanel;
+		private GameObject infoPanel;
+		private Material renderOnTop;
+		private GameObject mainCanvas;
+		private Hardware hardware;
+		private bool contentRendered = false;
+		public void InitializeDashboard(GameObject hardwareObject, Hardware domainHardware){
+			EventManager.StartListening ("showDatasetLoader", ShowDatasetLoader);
+
+
+			hardware = domainHardware;
+			renderOnTop = Resources.Load("Material/DashboardRenderOnTop", typeof(Material)) as Material;
 			Sprite backgroundColor = Resources.Load ("Textures/DashboardBackground", typeof(Sprite)) as Sprite;
 			if (renderOnTop == null) {
 				Debug.Log ("Kon dashboard material niet toewijzen, kijk of je dit kunt oplossen");
 			}
 
 
-			GameObject newCanvas = new GameObject("Canvas");
-			newCanvas.name = "dasbhoard-"+hardwareObject.name;
-			Canvas c = newCanvas.AddComponent<Canvas>();
+			mainCanvas = new GameObject("Canvas");
+			mainCanvas.name = "dasbhoard-"+hardwareObject.name;
+			Canvas c = mainCanvas.AddComponent<Canvas>();
 			c.renderMode = RenderMode.WorldSpace;
-			newCanvas.AddComponent<CanvasScaler> ().dynamicPixelsPerUnit = 1.75f;
-			newCanvas.AddComponent<GraphicRaycaster>();
+			mainCanvas.AddComponent<CanvasScaler> ().dynamicPixelsPerUnit = 1.75f;
+			mainCanvas.AddComponent<GraphicRaycaster>();
 			//RecalculateCanvasPosition (newCanvas, hardwareObject);
 
-			GameObject dataPanel = RenderPanel (renderOnTop, newCanvas.name + "-data", backgroundColor);
-			GameObject infoPanel = RenderPanel (renderOnTop, newCanvas.name + "-info", backgroundColor);
+			dataPanel = RenderPanel (renderOnTop, mainCanvas.name + "-data", backgroundColor);
+			infoPanel = RenderPanel (renderOnTop, mainCanvas.name + "-info", backgroundColor);
 			VerticalLayoutGroup vGroup = infoPanel.AddComponent<VerticalLayoutGroup> ();
 			VerticalLayoutGroup vGroupData = dataPanel.AddComponent<VerticalLayoutGroup> ();
 			vGroup.padding.left = 20;
@@ -47,12 +60,12 @@ namespace Presentation.Dashboard
 			float resolutionCanvasWidth = 800.0F;
 			float resolutionCanvasHeigth = 600.0F;
 	
-			SetCanvasResolution (newCanvas, resolutionCanvasHeigth, resolutionCanvasWidth);
+			SetCanvasResolution (mainCanvas, resolutionCanvasHeigth, resolutionCanvasWidth);
 
 
-			dataPanel.transform.SetParent (newCanvas.transform, false);
-			infoPanel.transform.SetParent(newCanvas.transform, false);
-			newCanvas.transform.SetParent (hardwareObject.transform, false);
+			dataPanel.transform.SetParent (mainCanvas.transform, false);
+			infoPanel.transform.SetParent(mainCanvas.transform, false);
+			mainCanvas.transform.SetParent (hardwareObject.transform, false);
 
 
 			float reformedHardwareX = (1.0F - hardwareObject.transform.localScale.x);
@@ -60,41 +73,48 @@ namespace Presentation.Dashboard
 
 			float width = 2.0F / (resolutionCanvasWidth - (resolutionCanvasWidth * reformedHardwareX));
 			float height = 2.0F / (resolutionCanvasHeigth - (resolutionCanvasHeigth * reformedHardwareY));
-			newCanvas.transform.localScale = new Vector3 (width , height);
+			mainCanvas.transform.localScale = new Vector3 (width , height);
 
-			this.SetDashboardDataSize (newCanvas, resolutionCanvasHeigth, resolutionCanvasWidth / 2); 
-			this.SetDashboardInfoSize (newCanvas, resolutionCanvasHeigth / 2, resolutionCanvasWidth / 2); 
-
-
-			this.RenderContent (infoPanel, dataPanel, hardware, renderOnTop);
-
-			RecalculateCanvasPosition (newCanvas, hardwareObject);
-			AddBillboardRenderer (newCanvas);
+			this.SetDashboardDataSize (mainCanvas, resolutionCanvasHeigth, resolutionCanvasWidth / 2); 
+			this.SetDashboardInfoSize (mainCanvas, resolutionCanvasHeigth / 2, resolutionCanvasWidth / 2); 
 
 
-			return newCanvas;
+			//this.RenderContent (hardware);
+
+			RecalculateCanvasPosition (mainCanvas, hardwareObject);
+			AddBillboardRenderer (mainCanvas);
+
+
+
 		}
-		public void RenderContent(GameObject infoPanel, GameObject dataPanel, Hardware hardware, Material material){
-			// load all "static" data
-			GameObject hardwareTitle = this.RenderText(infoPanel, infoPanel.name+"-hardwareTitle", "Name: "+hardware.name, material);
-			GameObject infoTitle = this.RenderText(infoPanel, infoPanel.name+"-title", "Info", material);
-			GameObject hardwareType = this.RenderText(infoPanel, infoPanel.name+"-hardwareType", "Type: "+hardware.type.name, material);
+		public GameObject GetDashboard(){
+			return this.mainCanvas;
+		}
+		public void RenderContent(){
+			if (!contentRendered) {
+				// load all "static" data
+				GameObject hardwareTitle = this.RenderText(infoPanel, infoPanel.name+"-hardwareTitle", "Name: "+hardware.name, renderOnTop);
+				GameObject infoTitle = this.RenderText(infoPanel, infoPanel.name+"-title", "Info", renderOnTop);
+				GameObject hardwareType = this.RenderText(infoPanel, infoPanel.name+"-hardwareType", "Type: "+hardware.type.name, renderOnTop);
 
-			GameObject dataTitle = this.RenderText(infoPanel, dataPanel.name+"-title", "Data", material);
+				GameObject dataTitle = this.RenderText(infoPanel, dataPanel.name+"-title", "Data", renderOnTop);
 
-			infoTitle.transform.SetParent (infoPanel.transform, false);
-			hardwareTitle.transform.SetParent (infoPanel.transform, false);
-			hardwareType.transform.SetParent (infoPanel.transform, false);
+				infoTitle.transform.SetParent (infoPanel.transform, false);
+				hardwareTitle.transform.SetParent (infoPanel.transform, false);
+				hardwareType.transform.SetParent (infoPanel.transform, false);
 
-			Sprite testSprite = Resources.Load ("Textures/Test1", typeof(Sprite)) as Sprite;
-			GameObject image1 = this.RenderImage (dataPanel, dataPanel.name + "-data-whatever", testSprite, material);
-			GameObject image2 = this.RenderImage (dataPanel, dataPanel.name + "-data-whatever2", testSprite, material);
-
-			dataTitle.transform.SetParent (dataPanel.transform, false);
-			image1.transform.SetParent (dataPanel.transform, false);
-			image2.transform.SetParent (dataPanel.transform, false);
+				/*Sprite testSprite = Resources.Load ("Textures/Test1", typeof(Sprite)) as Sprite;
+				GameObject image1 = this.RenderImage (dataPanel, dataPanel.name + "-data-whatever", testSprite, material);
+				GameObject image2 = this.RenderImage (dataPanel, dataPanel.name + "-data-whatever2", testSprite, material); */
 
 
+				dataTitle.transform.SetParent (dataPanel.transform, false);
+				/*image1.transform.SetParent (dataPanel.transform, false);
+				image2.transform.SetParent (dataPanel.transform, false); */
+				EventManager.TriggerEvent ("loadHardwareDataset", "d1"); // load dataset corresponding to this hardware object.
+
+				contentRendered = true;
+			}
 		}
 		private void SetCanvasResolution(GameObject dashboard, float height, float width){
 			this.ResizeObject (dashboard, height, width);
@@ -109,6 +129,18 @@ namespace Presentation.Dashboard
 		private void SetDashboardDataSize(GameObject dashboard, float height, float width){
 			var dashboardData = GetDataPanel (dashboard);
 			this.ResizeObject (dashboardData, height, width);
+		}
+
+		private void ShowDatasetLoader (System.Object show)
+		{
+			bool showLoader = Convert.ToBoolean (show);
+			GameObject prefab = Resources.Load ("Prefabs/InteractivityLoader", typeof(GameObject)) as GameObject;
+			GameObject obj = GameObject.Instantiate (prefab, new Vector3 (0, 0, 0), Quaternion.identity);
+			obj.transform.parent = dataPanel.transform;
+			obj.SetActive (true);
+			/*if (showLoader) {
+				
+			}*/
 		}
 
 		/**

@@ -11,24 +11,26 @@ namespace Business {
 	public class AreaService : MonoBehaviour{
 		//string uri = "http://localhost:3000/service/getallhardware?apikey=kdfjadslj2xk";
 		private UnityAction<System.Object> saveHardwareState;
+		private UnityAction<System.Object> loadHardwareDataset;
 
 		[SerializeField] private string uri;
-		private string stateUri = "http://localhost:3000/service/updatestate?apikey=kdfjadslj2xk";
+		[SerializeField] string stateUri = "http://localhost:3000/service/updatestate?apikey=kdfjadslj2xk";
+		[SerializeField] string datasetUri = "http://localhost:3000/dashboard/#/api/graph";
 		[SerializeField] private string areaId; // TODO: De NoSi zo aanpassen dat er per area in geladen kan worden.
 		private IDataService serviceImplementation;
 		// Use this for initialization
 
 		void Awake(){
 			saveHardwareState = new UnityAction<System.Object> (SaveHardwareState);
-
+			loadHardwareDataset = new UnityAction<System.Object> (LoadHardwareDataset);
 		}
 		void OnEnable(){
-			Debug.Log ("works");
-
+			EventManager.StartListening ("loadHardwareDataset", LoadHardwareDataset);
 			EventManager.StartListening ("updateHardwareState", SaveHardwareState); 
 
 		}
 		void OnDisable(){
+			EventManager.StopListening ("loadHardwareDataset", LoadHardwareDataset);
 			EventManager.StopListening ("updateHardwareState", SaveHardwareState); 
 
 		}
@@ -49,6 +51,12 @@ namespace Business {
 			StartCoroutine (this.serviceImplementation.SaveHardwareState (hardwareObject, stateUri));
 		}
 		#endregion
+
+		private void LoadHardwareDataset (System.Object dataSetId)
+		{
+			EventManager.TriggerEvent ("showDatasetLoader", true);
+			StartCoroutine (this.serviceImplementation.LoadHardwareDataset ("d1", datasetUri));
+		}
 
 	
 	}

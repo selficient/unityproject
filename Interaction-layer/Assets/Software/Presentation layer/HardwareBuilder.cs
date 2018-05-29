@@ -7,6 +7,7 @@ using Business.Domain;
 using VRStandardAssets.Utils;
 using cakeslice;
 using VRStandardAssets.Examples;
+using UnityEngine.EventSystems;
 
 namespace Presentation {
 	/*
@@ -72,9 +73,8 @@ namespace Presentation {
 						/*
 						 * Maak interactief
 						*/
-						VRInteractiveItem interactiveItem = interactiveElement.AddComponent<VRInteractiveItem> (); 
-						InteractionObject interactionObject = interactiveElement.AddComponent<InteractionObject>();
-						interactionObject.m_InteractiveItem = interactiveItem; // add outline effect.
+						interactiveElement.AddComponent<InteractionObject>();
+						interactiveElement.AddComponent<EventTrigger>();
 
 						/**
 						 * Voeg uitlijning toe
@@ -96,7 +96,7 @@ namespace Presentation {
 							interactive.gameObject = interactiveElement;
 							interactive.interactionName = hardware.interactions[0].name;
 							interactive.hardware = hardware; 
-							interactive.m_InteractiveItem = interactiveItem;
+							//interactive.m_InteractiveItem = interactiveItem;
 							interactive.interactable = interactable;
 						}
 							

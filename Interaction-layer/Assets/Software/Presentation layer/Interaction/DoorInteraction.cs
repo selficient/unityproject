@@ -27,8 +27,13 @@ namespace Presentation
 		{
 			anim.Play ("close");
 		}
-
+		public bool WantsUpdate ()
+		{
+			return true;
+		}
 		#endregion
+
+
 	}
 }
 

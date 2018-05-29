@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Presentation.Dashboard;
 using Business.Domain;
+using Task;
 
 namespace Presentation {
 	public class DashboardInteraction : Interactable{
@@ -23,6 +24,7 @@ namespace Presentation {
 		{
 			
 			Debug.Log ("Show dashboard "+ this.sensor.name); 
+			renderer.RenderContent (); // renderd niet opnieuw als het al eens geladen is.
 			dashboard.SetActive (true);
 		}
 
@@ -36,11 +38,19 @@ namespace Presentation {
 		{
 			Debug.Log ("initialize sensor dashboard");
 			//throw new System.NotImplementedException ();
-			dashboard = this.renderer.InitializeDashboard(this.sensor, this.hardware);
+			renderer = new DashboardRenderer();
+			renderer.InitializeDashboard(this.sensor, this.hardware);
+			dashboard = renderer.GetDashboard ();
 			dashboard.SetActive (false);
+
 
 		}
 
+
+		public bool WantsUpdate ()
+		{
+			return false;
+		}
 		#endregion
 
 

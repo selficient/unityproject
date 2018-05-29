@@ -34,7 +34,7 @@ public class Autowalk : MonoBehaviour
     private bool isWalking = false;
 
     Transform mainCamera = null;
-
+	CharacterController controller;
     //This is the variable for the player speed
     [Tooltip("With this speed the player will move.")]
     public float speed;
@@ -61,6 +61,7 @@ public class Autowalk : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main.transform;
+		controller = this.GetComponent<CharacterController> ();
     }
 
     void Update()
@@ -109,12 +110,13 @@ public class Autowalk : MonoBehaviour
         {
             Vector3 direction = new Vector3(mainCamera.transform.forward.x, 0, mainCamera.transform.forward.z).normalized * speed * Time.deltaTime;
             Quaternion rotation = Quaternion.Euler(new Vector3(0, -transform.rotation.eulerAngles.y, 0));
-            transform.Translate(rotation * direction);
+            //transform.Translate(rotation * direction);
+			controller.Move(rotation * direction);
         }
 
         if (freezeYPosition)
         {
-            transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
+			controller.Move (new Vector3 (transform.position.x, yOffset, transform.position.z));
         }
     }
 	#endif

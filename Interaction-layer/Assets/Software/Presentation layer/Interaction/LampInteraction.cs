@@ -31,6 +31,11 @@ namespace Presentation
 		{
 			light.intensity = 2;
 		}
+
+		public bool WantsUpdate ()
+		{
+			return true;
+		}
 		#endregion
 	}
 

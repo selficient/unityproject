@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 using Task;
 using Business.Domain;
 using UnityEngine.Events;
+using System.IO;
+using System;
 
 namespace Business {
 	public class HardwareService : IDataService {
@@ -18,7 +20,7 @@ namespace Business {
 
 			if(www.isNetworkError || www.isHttpError) {
 				EventManager.TriggerEvent ("loading", false);
-
+				Debug.Log ("Error loading objects");
 			}
 			else {
 				Hardware[] hardware = JsonHelper.FromJson<Hardware> (www.downloadHandler.text);
@@ -45,6 +47,20 @@ namespace Business {
 			} else {
 				EventManager.TriggerEvent ("showInteractiveLoader", false);
 				Debug.Log (www.downloadHandler.text);
+			}
+		}
+
+		public IEnumerator LoadHardwareDataset (string datasetId, string uri)
+		{
+			UnityWebRequest www = UnityWebRequest.Get (uri+"/"+datasetId);
+			yield return www.SendWebRequest ();
+			if (www.isNetworkError || www.isHttpError) {
+				EventManager.TriggerEvent ("showDatasetLoader", false);
+				Debug.Log ("errortje gevonden!");
+			} else {
+				Debug.Log ("Load dataset in voor dashboard");
+				EventManager.TriggerEvent ("showDatasetLoader", false);
+
 			}
 		}
 	}

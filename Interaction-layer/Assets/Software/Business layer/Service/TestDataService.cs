@@ -47,6 +47,11 @@ namespace Business
 		{
 			throw new NotImplementedException ();
 		}
+
+		public IEnumerator LoadHardwareDataset (string datasetId, string uri)
+		{
+			throw new NotImplementedException ();
+		}
 		#endregion
 	}
 }

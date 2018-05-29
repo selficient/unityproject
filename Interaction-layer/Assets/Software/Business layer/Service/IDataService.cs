@@ -8,7 +8,7 @@ namespace Business
 	{
 		IEnumerator AreaLoader(string uri);
 		IEnumerator SaveHardwareState (System.Object hardwareObject, string uri);
-
+		IEnumerator LoadHardwareDataset (string datasetId, string uri);
 	}
 }
 

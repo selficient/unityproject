@@ -3,16 +3,17 @@ using VRStandardAssets.Utils;
 using Task;
 using Business.Domain;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 namespace Presentation
 {
     // This script is a simple example of how an interactive item can
     // be used to change things on gameobjects by handling events.
 
-    public class ObjectInteraction : MonoBehaviour
+	public class ObjectInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
      
-		[SerializeField] public VRInteractiveItem m_InteractiveItem;
+		//[SerializeField] public VRInteractiveItem m_InteractiveItem;
 		[SerializeField] public GameObject gameObject;
 		[SerializeField] public Interactable interactable;
 
@@ -34,8 +35,32 @@ namespace Presentation
 			this.UpdateState (interaction);
         }
 
+		#region IPointerEnterHandler implementation
+		public void OnPointerEnter (PointerEventData eventData)
+		{
+			this.HandleOver ();
+		}
+		#endregion
 
-        private void OnEnable()
+		#region IPointerExitHandler implementation
+
+		public void OnPointerExit (PointerEventData eventData)
+		{
+			this.HandleOut ();
+		}
+
+		#endregion
+
+		#region IPointerClickHandler implementation
+
+		public void OnPointerClick (PointerEventData eventData)
+		{
+			this.HandleClick ();
+		}
+
+		#endregion
+
+       /* private void OnEnable()
         {
             m_InteractiveItem.OnOver += HandleOver;
             m_InteractiveItem.OnOut += HandleOut;
@@ -48,7 +73,7 @@ namespace Presentation
             m_InteractiveItem.OnOver -= HandleOver;
             m_InteractiveItem.OnOut -= HandleOut;
             m_InteractiveItem.OnClick -= HandleClick;
-        }
+        }*/
 
 
         //Handle the Over event
@@ -97,7 +122,9 @@ namespace Presentation
 				hardware.state.code = "0";
 				UpdateState (interaction);
 			}
-			EventManager.TriggerEvent ("updateHardwareState", new KeyValuePair<Interaction, Hardware>(interaction, hardware));
+			if (this.interactable.WantsUpdate()) { // wanneer er geen update gewenst is , kan dit op false worden gezet.
+				EventManager.TriggerEvent ("updateHardwareState", new KeyValuePair<Interaction, Hardware>(interaction, hardware));
+			}
 
 		}
 

@@ -2,26 +2,41 @@ using UnityEngine;
 using VRStandardAssets.Utils;
 using Presentation;
 using Task;
+using UnityEngine.EventSystems;
 
 namespace VRStandardAssets.Examples
 {
     // This script is a simple example of how an interactive item can
     // be used to change things on gameobjects by handling events.
-    public class InteractionObject : MonoBehaviour
+	public class InteractionObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
               
-        [SerializeField] public VRInteractiveItem m_InteractiveItem;
 		private bool inViewport = false;
 		private Camera cam; 
 		void Start(){
-			GameObject camera = GameObject.Find ("CenterEyeAnchor");
-			cam = camera.GetComponent<Camera> ();
+			cam = Camera.main;
 		}
         private void Awake ()
         {
 			
         }
 
+		#region IPointerExitHandler implementation
+		public void OnPointerExit (PointerEventData eventData)
+		{
+			this.HandleOut ();
+		}
+		#endregion
+
+		#region IPointerEnterHandler implementation
+
+		public void OnPointerEnter (PointerEventData eventData)
+		{
+			this.HandleOver ();
+		}
+
+		#endregion
+	
 
 		/*void Update()
 		{
@@ -54,20 +69,7 @@ namespace VRStandardAssets.Examples
 
 
 		}
-        private void OnEnable()
-        {
-            m_InteractiveItem.OnOver += HandleOver;
-            m_InteractiveItem.OnOut += HandleOut;
-        }
-
-
-        private void OnDisable()
-        {
-            m_InteractiveItem.OnOver -= HandleOver;
-            m_InteractiveItem.OnOut -= HandleOut;
-          
-        }
-
+  
 
         //Handle the Over event
         private void HandleOver()
