@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: c6f6937ae9cd091459419325b41c96d7
-timeCreated: 1509454320
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -6818,6 +6816,7 @@ ModelImporter:
     2304104: System Panel isolatie_120mm_offset60 [6872538]
     2304106: System Panel isolatie_120mm_offset60 [6872540]
     2304108: System Panel isolatie_120mm_offset60 [7248918]
+    2304110: huisje is mooi.rvt
     3300000: 300_28_ISR_kolom_vierkant_hout 45x85 [7658475]
     3300002: 300_28_ISR_kolom_vierkant_hout 45x85 [7658539]
     3300004: 300_28_ISR_kolom_vierkant_hout 45x85 [7658545]
@@ -8873,6 +8872,7 @@ ModelImporter:
     3304104: System Panel isolatie_120mm_offset60 [6872538]
     3304106: System Panel isolatie_120mm_offset60 [6872540]
     3304108: System Panel isolatie_120mm_offset60 [7248918]
+    3304110: huisje is mooi.rvt
     4300000: 73_FUS_ISR_aanrechtblok met koken [5029432]
     4300002: Basic Wall NLRS_22_WA_hsb 12-120-12mm 2 [5031018]
     4300004: Rectangular Mullion 38x300 [5046772]
@@ -10928,6 +10928,7 @@ ModelImporter:
     4304104: SubPanel K420 [7509213]
     4304106: huisje is mooi.rvt_MeshPart0
     4304108: huisje is mooi.rvt_MeshPart1
+    4304110: huisje is mooi.rvt
     9500000: //RootNode
     10800000: Sky002
     10800002: Sky004
@@ -11062,6 +11063,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -11086,6 +11088,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

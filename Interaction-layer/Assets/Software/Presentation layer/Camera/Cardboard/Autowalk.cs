@@ -33,7 +33,7 @@ public class Autowalk : MonoBehaviour
     // This variable determinates if the player will move or not 
     private bool isWalking = false;
 
-    Transform mainCamera = null;
+    public Transform mainCamera;
 	CharacterController controller;
     //This is the variable for the player speed
     [Tooltip("With this speed the player will move.")]
@@ -56,11 +56,10 @@ public class Autowalk : MonoBehaviour
     [Tooltip("This is the fixed y-coordinate.")]
     public float yOffset;
 
-	#if !UNITY_EDITOR
+	//#if !UNITY_EDITOR
 
     void Start()
     {
-        mainCamera = Camera.main.transform;
 		controller = this.GetComponent<CharacterController> ();
     }
 
@@ -119,5 +118,5 @@ public class Autowalk : MonoBehaviour
 			controller.Move (new Vector3 (transform.position.x, yOffset, transform.position.z));
         }
     }
-	#endif
+	//#endif
 }

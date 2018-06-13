@@ -67,7 +67,7 @@ namespace Presentation {
 					var interactiveElement = GameObject.Find (hardware.name); 
 
 					if (interactiveElement != null) {
-						interactiveElement.layer = interactionLayerId; // interaction layer
+						//interactiveElement.layer = interactionLayerId; // interaction layer
 						interactiveElement.SetActive (false);
 
 						/*

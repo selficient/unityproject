@@ -9,14 +9,16 @@ using System;
 namespace Presentation {
 	public class LoadingScreen : MonoBehaviour {
 		public GameObject loadingScreen;
-		public GameObject activityIndicator;
+	//	public GameObject activityIndicator;
 		public GameObject successIndicator;
 		public GameObject errorIndicator;
+        public GameObject textIndicator;
 		private UnityAction<System.Object> hideLoader; 
 
 		void Awake() {
 			hideLoader = new UnityAction<System.Object> (HideLoader);
-			activityIndicator.SetActive (true);
+            
+		//	activityIndicator.SetActive (true);
 
 		}
 		void OnEnable(){
@@ -30,20 +32,28 @@ namespace Presentation {
 
 		void HideLoader (System.Object success)
 		{
+            Debug.Log("succes loading shizzle");
 			bool response = Convert.ToBoolean(success);
-			successIndicator.SetActive(response);
-			errorIndicator.SetActive (!response);
-			loadingScreen.SetActive(false);
+            //errorIndicator.SetActive (!response);
+            Debug.Log(response);
+            StartCoroutine(WaitForResponse(response));
+            StartCoroutine(WaitForHiding());
 		//	StartCoroutine (WaitForHiding());
 		}
 			
 
 
 		IEnumerator WaitForHiding(){
-			yield return new WaitForSeconds(2);
+			yield return new WaitForSeconds(3);
 			loadingScreen.SetActive (false);
 
 		}
-	}
+        IEnumerator WaitForResponse(bool response)
+        {
+            yield return new WaitForSeconds(2);
+            successIndicator.SetActive(response);
+
+        }
+    }
 
 }

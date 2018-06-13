@@ -53,15 +53,16 @@ namespace Business {
 		public IEnumerator LoadHardwareDataset (string datasetId, string uri)
 		{
 			UnityWebRequest www = UnityWebRequest.Get (uri+"/"+datasetId);
-			yield return www.SendWebRequest ();
-			if (www.isNetworkError || www.isHttpError) {
-				EventManager.TriggerEvent ("showDatasetLoader", false);
-				Debug.Log ("errortje gevonden!");
-			} else {
-				Debug.Log ("Load dataset in voor dashboard");
-				EventManager.TriggerEvent ("showDatasetLoader", false);
+			//yield return www.SendWebRequest ();
+			//if (www.isNetworkError || www.isHttpError) {
+			//	EventManager.TriggerEvent ("showInteractiveLoader", false);
+			//} else {
+			yield return new WaitForSeconds(2); // simuleer 2 seconden wachttijd
+			Debug.Log ("Load dataset in voor dashboard");
+			EventManager.TriggerEvent ("showInteractiveLoader", false);
+			EventManager.TriggerEvent ("datasetLoaded", null);
 
-			}
+
 		}
 	}
 

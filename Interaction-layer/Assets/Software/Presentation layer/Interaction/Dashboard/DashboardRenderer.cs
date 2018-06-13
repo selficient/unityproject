@@ -2,7 +2,6 @@
 using UnityEngine;
 using Business.Domain;
 using UnityEngine.UI;
-
 /*
  * Renderer die automatisch dashboard genereert.
  * @author T.J van der Ende
@@ -10,23 +9,23 @@ using UnityEngine.UI;
 using System.Collections;
 using Task;
 using UnityEngine.Events;
-
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.EventSystems;
 
 namespace Presentation.Dashboard
 {
 	public class DashboardRenderer
 	{
-		private UnityAction<System.Object> saveHardwareState;
-
 		private GameObject dataPanel;
 		private GameObject infoPanel;
 		private Material renderOnTop;
 		private GameObject mainCanvas;
 		private Hardware hardware;
 		private bool contentRendered = false;
+        private int uiLayer = 15;
 		public void InitializeDashboard(GameObject hardwareObject, Hardware domainHardware){
-			EventManager.StartListening ("showDatasetLoader", ShowDatasetLoader);
-
+			//EventManager.StartListening ("showDatasetLoader", ShowDatasetLoader);
+			EventManager.StartListening ("datasetLoaded", ShowDataset);
 
 			hardware = domainHardware;
 			renderOnTop = Resources.Load("Material/DashboardRenderOnTop", typeof(Material)) as Material;
@@ -38,10 +37,16 @@ namespace Presentation.Dashboard
 
 			mainCanvas = new GameObject("Canvas");
 			mainCanvas.name = "dasbhoard-"+hardwareObject.name;
-			Canvas c = mainCanvas.AddComponent<Canvas>();
+            mainCanvas.layer = this.uiLayer;
+
+            Canvas c = mainCanvas.AddComponent<Canvas>();
 			c.renderMode = RenderMode.WorldSpace;
+            
 			mainCanvas.AddComponent<CanvasScaler> ().dynamicPixelsPerUnit = 1.75f;
 			mainCanvas.AddComponent<GraphicRaycaster>();
+            mainCanvas.AddComponent<EventTrigger>();
+            mainCanvas.AddComponent<DashboardGazeDetect>();
+            mainCanvas.AddComponent<GvrPointerPhysicsRaycaster>();
 			//RecalculateCanvasPosition (newCanvas, hardwareObject);
 
 			dataPanel = RenderPanel (renderOnTop, mainCanvas.name + "-data", backgroundColor);
@@ -81,7 +86,7 @@ namespace Presentation.Dashboard
 
 			//this.RenderContent (hardware);
 
-			RecalculateCanvasPosition (mainCanvas, hardwareObject);
+			//RecalculateCanvasPosition (mainCanvas, hardwareObject);
 			AddBillboardRenderer (mainCanvas);
 
 
@@ -94,12 +99,14 @@ namespace Presentation.Dashboard
 			if (!contentRendered) {
 				// load all "static" data
 				GameObject hardwareTitle = this.RenderText(infoPanel, infoPanel.name+"-hardwareTitle", "Name: "+hardware.name, renderOnTop);
+
 				GameObject infoTitle = this.RenderText(infoPanel, infoPanel.name+"-title", "Info", renderOnTop);
 				GameObject hardwareType = this.RenderText(infoPanel, infoPanel.name+"-hardwareType", "Type: "+hardware.type.name, renderOnTop);
 
 				GameObject dataTitle = this.RenderText(infoPanel, dataPanel.name+"-title", "Data", renderOnTop);
+                dataTitle.GetComponent<Text>().verticalOverflow = VerticalWrapMode.Overflow; // zet overflow voor de titel.
 
-				infoTitle.transform.SetParent (infoPanel.transform, false);
+                infoTitle.transform.SetParent (infoPanel.transform, false);
 				hardwareTitle.transform.SetParent (infoPanel.transform, false);
 				hardwareType.transform.SetParent (infoPanel.transform, false);
 
@@ -109,8 +116,7 @@ namespace Presentation.Dashboard
 
 
 				dataTitle.transform.SetParent (dataPanel.transform, false);
-				/*image1.transform.SetParent (dataPanel.transform, false);
-				image2.transform.SetParent (dataPanel.transform, false); */
+
 				EventManager.TriggerEvent ("loadHardwareDataset", "d1"); // load dataset corresponding to this hardware object.
 
 				contentRendered = true;
@@ -131,16 +137,29 @@ namespace Presentation.Dashboard
 			this.ResizeObject (dashboardData, height, width);
 		}
 
-		private void ShowDatasetLoader (System.Object show)
+	/*	private void ShowDatasetLoader (System.Object show)
 		{
 			bool showLoader = Convert.ToBoolean (show);
 			GameObject prefab = Resources.Load ("Prefabs/InteractivityLoader", typeof(GameObject)) as GameObject;
 			GameObject obj = GameObject.Instantiate (prefab, new Vector3 (0, 0, 0), Quaternion.identity);
-			obj.transform.parent = dataPanel.transform;
+			obj.transform.SetParent (dataPanel.transform, false);
+
 			obj.SetActive (true);
-			/*if (showLoader) {
+			if (showLoader) {
 				
-			}*/
+			}
+		
+		} */
+
+		void ShowDataset (System.Object dataset)
+		{
+			Sprite testSprite = Resources.Load ("Textures/dashboardvoorbeeld", typeof(Sprite)) as Sprite;
+			GameObject image1 = this.RenderImage (dataPanel, dataPanel.name + "-data-whatever", testSprite, renderOnTop);
+			GameObject image2 = this.RenderImage (dataPanel, dataPanel.name + "-data-whatever2", testSprite, renderOnTop); 
+
+			image1.transform.SetParent (dataPanel.transform, false);
+			image2.transform.SetParent (dataPanel.transform, false);
+
 		}
 
 		/**
@@ -160,9 +179,9 @@ namespace Presentation.Dashboard
 		}
 		private void AddBillboardRenderer(GameObject dashboard){
 			CameraFacingBillboard billboard = dashboard.AddComponent<CameraFacingBillboard> ();
-			Camera mainCamera = Camera.main;
+			Camera camera = GameObject.Find("Interaction Camera").GetComponent<Camera>();
 			billboard.amActive = true;
-			billboard.m_Camera = mainCamera;
+			billboard.m_Camera = camera;
 		}
 		private void RecalculateDataPanelPosition(GameObject dashboard, float x){
 			var dataPanel = GetDataPanel (dashboard);
@@ -218,7 +237,13 @@ namespace Presentation.Dashboard
 
 		}
 
-		
+		/*
+         * Zet de post profile saturation van de hoofd camera
+        */
+        private void ShowSaturation()
+        {
+
+        }
 
 	}
 }

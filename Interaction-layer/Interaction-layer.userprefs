@@ -1,15 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Software\Presentation layer\Camera\Cardboard\Autowalk.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Effects\ImageEffects\Readme.txt">
     <Files>
-      <File FileName="Assets\Software\Business layer\Service\AreaService.cs" Line="1" Column="1" />
-      <File FileName="Assets\Software\Business layer\Service\IDataService.cs" Line="1" Column="1" />
-      <File FileName="Assets\Software\Business layer\Service\HardwareService.cs" Line="1" Column="1" />
-      <File FileName="Assets\Software\Presentation layer\Interaction\DashboardInteraction.cs" Line="1" Column="1" />
-      <File FileName="Assets\Software\Presentation layer\Interaction\Dashboard\DashboardRenderer.cs" Line="143" Column="7" />
-      <File FileName="Assets\Software\Presentation layer\HardwareBuilder.cs" Line="57" Column="28" />
-      <File FileName="Assets\Software\Presentation layer\Camera\Cardboard\Autowalk.cs" Line="59" Column="2" />
-      <File FileName="Assets\Software\Presentation layer\Camera\Cardboard\ARTrackingController.cs" Line="132" Column="16" />
+      <File FileName="Assets\Resources\Material\blur.shader" Line="1" Column="1" />
+      <File FileName="Assets\Software\Presentation layer\LoadingScreen.cs" Line="1" Column="1" />
+      <File FileName="Assets\SuperBlur\Shader\SuperBlurUI.shader" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\Effects\ImageEffects\Readme.txt" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

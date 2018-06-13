@@ -54,7 +54,7 @@ namespace Business {
 
 		private void LoadHardwareDataset (System.Object dataSetId)
 		{
-			EventManager.TriggerEvent ("showDatasetLoader", true);
+			EventManager.TriggerEvent ("showInteractiveLoader", true);
 			StartCoroutine (this.serviceImplementation.LoadHardwareDataset ("d1", datasetUri));
 		}
 
