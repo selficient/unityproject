@@ -98,10 +98,10 @@ namespace Presentation
         {
 			
 
-			if (isActive) {
+			//if (isActive) {
 				Debug.Log ("can handle this click door status:" + hardware.state);
 				SaveState (interaction);
-			}
+			//}
 
         }
 		private void UpdateState(Interaction interaction){

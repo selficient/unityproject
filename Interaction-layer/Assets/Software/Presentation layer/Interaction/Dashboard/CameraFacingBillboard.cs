@@ -7,7 +7,8 @@
 //added un-initialized state, where script will do nothing
 using UnityEngine;
 using System.Collections;
-
+using Presentation.Dashboard;
+using UnityEngine.EventSystems;
 
 public class CameraFacingBillboard : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class CameraFacingBillboard : MonoBehaviour
 
 		myContainer = new GameObject();
 		myContainer.name = "GRP_"+transform.gameObject.name;
+        myContainer.layer = 16;
 		myContainer.transform.position = transform.position;
 		transform.parent = myContainer.transform;
 	}

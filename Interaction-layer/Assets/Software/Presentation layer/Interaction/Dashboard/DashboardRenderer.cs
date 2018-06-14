@@ -22,7 +22,7 @@ namespace Presentation.Dashboard
 		private GameObject mainCanvas;
 		private Hardware hardware;
 		private bool contentRendered = false;
-        private int uiLayer = 15;
+        private int uiLayer = 16;
 		public void InitializeDashboard(GameObject hardwareObject, Hardware domainHardware){
 			//EventManager.StartListening ("showDatasetLoader", ShowDatasetLoader);
 			EventManager.StartListening ("datasetLoaded", ShowDataset);
@@ -43,13 +43,12 @@ namespace Presentation.Dashboard
 			c.renderMode = RenderMode.WorldSpace;
             
 			mainCanvas.AddComponent<CanvasScaler> ().dynamicPixelsPerUnit = 1.75f;
-			mainCanvas.AddComponent<GraphicRaycaster>();
-            mainCanvas.AddComponent<EventTrigger>();
-            mainCanvas.AddComponent<DashboardGazeDetect>();
-            mainCanvas.AddComponent<GvrPointerPhysicsRaycaster>();
-			//RecalculateCanvasPosition (newCanvas, hardwareObject);
+			mainCanvas.AddComponent<GvrPointerGraphicRaycaster>();
+           // mainCanvas.AddComponent<EventTrigger>();
+            DashboardGazeDetect detection = mainCanvas.AddComponent<DashboardGazeDetect>();
+            //RecalculateCanvasPosition (newCanvas, hardwareObject);
 
-			dataPanel = RenderPanel (renderOnTop, mainCanvas.name + "-data", backgroundColor);
+            dataPanel = RenderPanel (renderOnTop, mainCanvas.name + "-data", backgroundColor);
 			infoPanel = RenderPanel (renderOnTop, mainCanvas.name + "-info", backgroundColor);
 			VerticalLayoutGroup vGroup = infoPanel.AddComponent<VerticalLayoutGroup> ();
 			VerticalLayoutGroup vGroupData = dataPanel.AddComponent<VerticalLayoutGroup> ();
@@ -179,7 +178,7 @@ namespace Presentation.Dashboard
 		}
 		private void AddBillboardRenderer(GameObject dashboard){
 			CameraFacingBillboard billboard = dashboard.AddComponent<CameraFacingBillboard> ();
-			Camera camera = GameObject.Find("Interaction Camera").GetComponent<Camera>();
+            Camera camera = Camera.main;
 			billboard.amActive = true;
 			billboard.m_Camera = camera;
 		}

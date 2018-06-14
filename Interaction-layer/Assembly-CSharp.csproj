@@ -59,7 +59,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\_MK\MKGlassFree\MKGlassFreeMaterialHelper.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\AugmentedImage\Scripts\AugmentedImageExampleController.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\AugmentedImage\Scripts\AugmentedImageVisualizer.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\CloudAnchor\Scripts\AnchorIdFromRoomRequestMessage.cs" />
@@ -370,6 +369,8 @@
     <Compile Include="Assets\Software\Presentation layer\InteractionLoader.cs" />
     <Compile Include="Assets\Software\Presentation layer\InteractionObject.cs" />
     <Compile Include="Assets\Software\Presentation layer\LoadingScreen.cs" />
+    <Compile Include="Assets\Software\Presentation layer\Menu\MenuPopout.cs" />
+    <Compile Include="Assets\Software\Presentation layer\Menu\SceneLoader.cs" />
     <Compile Include="Assets\Software\Presentation layer\Outline.cs" />
     <Compile Include="Assets\Software\Presentation layer\Outliner.cs" />
     <Compile Include="Assets\Software\Task layer\DataEvent.cs" />
@@ -437,35 +438,23 @@
     <None Include="Assets\Oculus\VR\Resources\OVRMRUnlitTransparent.shader" />
     <None Include="Assets\Oculus\VR\Resources\OVRMRChromaKey.cginc" />
     <None Include="Assets\GoogleARCore\Examples\Common\Materials\Shaders\MobileDiffuseWithLightEstimation.shader" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\MKGlassCommonFree.shader" />
     <None Include="Assets\OutlineEffect\Resources\OutlineShader.shader" />
     <None Include="Assets\GoogleARCore\SDK\Materials\ARBackground.shader" />
     <None Include="Assets\GoogleVR\Shaders\GvrUIOverlayFont.shader" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\Common\MKGlassInc.cginc" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\Meta\MKGlassMetaIO.cginc" />
     <None Include="Assets\OutlineEffect\Resources\OutlineBufferShader.shader" />
     <None Include="Assets\VRSampleScenes\Shaders\UnlitTransparentParam.shader" />
     <None Include="Assets\Oculus\VR\Shaders\OVRColorRampAlpha.shader" />
     <None Include="Assets\Resources\Material\Outlined.shader" />
     <None Include="Assets\GoogleVR\Shaders\GvrAdditiveOverlay.shader" />
     <None Include="Assets\Oculus\VR\Resources\Cubemap Blit.shader" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\Surface\MKGlassSurface.cginc" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\Meta\MKGlassMeta.cginc" />
     <None Include="Assets\VRSampleScenes\Shaders\UIOverlay.shader" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\Common\MKGlassLight.cginc" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\Forward\MKGlassForward.cginc" />
     <None Include="Assets\Oculus\VR\Resources\OVRMRUnlit.shader" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\VertexLit\MKGlassVertexLitIO.cginc" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\Forward\MKGlassForwardIO.cginc" />
     <None Include="Assets\Resources\Material\$self_illuminated_outlined_diffuse_113.shader" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\Common\MKGlassDef.cginc" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\Common\MKGlassV.cginc" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\MKGlassFree.shader" />
     <None Include="Assets\Oculus\VR\Shaders\Unlit Crosshair.shader" />
     <None Include="Assets\VRSampleScenes\Shaders\PriorityParticleAlpha.shader" />
     <None Include="Assets\Resources\Material\blur.shader" />
     <None Include="Assets\Oculus\VR\Resources\Unlit Transparent Color.shader" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\Forward\MKGlassForwardAddSetup.cginc" />
+    <None Include="Assets\Resources\Material\testShader.shader" />
     <None Include="Assets\GoogleVR\Shaders\GvrController.shader" />
     <None Include="Assets\GoogleVR\Shaders\GvrUnlitTransparentOverlay.shader" />
     <None Include="Assets\GoogleARCore\Examples\Common\Materials\Shaders\PointCloud.shader" />
@@ -481,25 +470,23 @@
     <None Include="Assets\GoogleARCore\Examples\ComputerVision\Materials\EdgeDetectionBackground.shader" />
     <None Include="Assets\GoogleVR\Shaders\GvrControllerReticle.shader" />
     <None Include="Assets\VRSampleScenes\Fonts\LICENSE.txt" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\Forward\MKGlassForwardBaseSetup.cginc" />
     <None Include="Assets\GoogleVR\Plugins\Android\AndroidManifest-Daydream.xml" />
     <None Include="Assets\Oculus\VR\Resources\OVRMRCameraFrame.shader" />
     <None Include="Assets\GoogleVR\Demos\Shaders\HelloVR\HelloVRUnlitGrayscaleToColor.shader" />
     <None Include="Assets\Oculus\VR\Resources\OVRMRClipPlane.shader" />
     <None Include="Assets\GoogleVR\Shaders\GvrReticleShader.shader" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\Meta\MKGlassMetaSetup.cginc" />
     <None Include="Assets\Resources\PostProcessing\Grayscale.shader" />
     <None Include="Assets\GoogleARCore\Examples\Common\Materials\Shaders\MobileSpecularWithLightEstimation.shader" />
     <None Include="Assets\GoogleVR\Shaders\GvrUIOverlay.shader" />
     <None Include="Assets\Software\Presentation layer\Interaction\Dashboard\DashboardShader.shader" />
     <None Include="Assets\GoogleVR\Plugins\Android\proguard-gvr.txt" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\VertexLit\MKGlassVertexLitSetup.cginc" />
     <None Include="Assets\GoogleVR\Plugins\Android\AndroidManifest-Cardboard.xml" />
     <None Include="Assets\Oculus\VR\Resources\Underlay Impostor.shader" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\VertexLit\MKGlassVertexLit.cginc" />
-    <None Include="Assets\_MK\MKGlassFree\Shader\Inc\Surface\MKGlassSurfaceIO.cginc" />
     <None Include="Assets\Activity Indicators\ReadMe_txt.txt" />
     <None Include="Assets\Oculus\VR\Plugins\placeholder.txt" />
+    <Reference Include="UnityEditor.StandardEvents">
+      <HintPath>C:/Users/Tjibbe/Documents/GitHub/unityproject/Interaction-layer/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>C:/Users/Tjibbe/Documents/GitHub/unityproject/Interaction-layer/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
@@ -508,9 +495,6 @@
     </Reference>
     <Reference Include="com.unity.postprocessing.Runtime">
       <HintPath>C:/Users/Tjibbe/Documents/GitHub/unityproject/Interaction-layer/Library/ScriptAssemblies/com.unity.postprocessing.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/Tjibbe/Documents/GitHub/unityproject/Interaction-layer/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.1.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
