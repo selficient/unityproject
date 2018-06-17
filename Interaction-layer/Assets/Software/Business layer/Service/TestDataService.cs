@@ -18,16 +18,12 @@ namespace Business
 			testlist.Add (new Hardware () {
 				id = "1",
 				name = "co2meter",
-				x = 35,
-				y = 25, 
-				z = 8
+				
 			});
 			testlist.Add (new Hardware () {
 				id = "2",
 				name = "luchtvochtigheid",
-				x = 40,
-				y = 25,
-				z = 8
+				
 			});
 			return testlist;
 		}

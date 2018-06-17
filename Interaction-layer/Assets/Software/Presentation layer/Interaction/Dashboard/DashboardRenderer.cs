@@ -25,7 +25,7 @@ namespace Presentation.Dashboard
         private int uiLayer = 16;
 		public void InitializeDashboard(GameObject hardwareObject, Hardware domainHardware){
 			//EventManager.StartListening ("showDatasetLoader", ShowDatasetLoader);
-			EventManager.StartListening ("datasetLoaded", ShowDataset);
+			EventManager.StartListening ("datasetLoaded-" + domainHardware.name, ShowDataset);
 
 			hardware = domainHardware;
 			renderOnTop = Resources.Load("Material/DashboardRenderOnTop", typeof(Material)) as Material;
@@ -45,7 +45,7 @@ namespace Presentation.Dashboard
 			mainCanvas.AddComponent<CanvasScaler> ().dynamicPixelsPerUnit = 1.75f;
 			mainCanvas.AddComponent<GvrPointerGraphicRaycaster>();
            // mainCanvas.AddComponent<EventTrigger>();
-            DashboardGazeDetect detection = mainCanvas.AddComponent<DashboardGazeDetect>();
+           // DashboardGazeDetect detection = mainCanvas.AddComponent<DashboardGazeDetect>();
             //RecalculateCanvasPosition (newCanvas, hardwareObject);
 
             dataPanel = RenderPanel (renderOnTop, mainCanvas.name + "-data", backgroundColor);
@@ -69,8 +69,9 @@ namespace Presentation.Dashboard
 
 			dataPanel.transform.SetParent (mainCanvas.transform, false);
 			infoPanel.transform.SetParent(mainCanvas.transform, false);
-			mainCanvas.transform.SetParent (hardwareObject.transform, false);
-
+            //mainCanvas.transform.SetParent (hardwareObject.transform, false);
+            mainCanvas.transform.parent = hardwareObject.transform;
+            mainCanvas.transform.position = hardwareObject.transform.position;
 
 			float reformedHardwareX = (1.0F - hardwareObject.transform.localScale.x);
 			float reformedHardwareY = (1.0F - hardwareObject.transform.localScale.y);
@@ -115,8 +116,8 @@ namespace Presentation.Dashboard
 
 
 				dataTitle.transform.SetParent (dataPanel.transform, false);
-
-				EventManager.TriggerEvent ("loadHardwareDataset", "d1"); // load dataset corresponding to this hardware object.
+                
+				EventManager.TriggerEvent ("loadHardwareDataset", hardware.name); // load dataset corresponding to this hardware object. (hardware name vervangen d oor dataset id)
 
 				contentRendered = true;
 			}

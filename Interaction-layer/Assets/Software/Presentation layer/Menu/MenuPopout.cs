@@ -1,12 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Task;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MenuPopout : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    private UnityAction<System.Object> unityAction;
+
     [SerializeField] public Transform m_Transform;         // Used to control the movement whatever needs to pop out.
     [SerializeField] public float m_PopSpeed = 8f;         // The speed at which the item should pop out.
     [SerializeField] public float m_PopDistance = 0.5f;    // The distance the item should pop out.
@@ -18,11 +22,11 @@ public class MenuPopout : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private bool IsOver = false;
 
-
+    private AsyncOperation asyncSceneLoader;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        EventManager.TriggerEvent("startSceneRendering", null);
+        asyncSceneLoader.allowSceneActivation = true;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -37,6 +41,8 @@ public class MenuPopout : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void Start()
     {
+        EventManager.StartListening("sceneRendered", SceneRendered);
+
         // Store the original position as the one that is not popped out.
         m_StartPosition = m_Transform.position;
 
@@ -44,6 +50,13 @@ public class MenuPopout : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         m_PoppedPosition = m_Transform.position - m_Transform.forward * m_PopDistance;
     }
 
+    private void SceneRendered(object arg0)
+    {
+        Material loaded = Resources.Load("Material/loaded", typeof(Material)) as Material;
+        asyncSceneLoader = arg0 as AsyncOperation;
+        MeshRenderer renderer = gameObject.GetComponent<MeshRenderer>();
+        renderer.material = loaded;
+    }
 
     private void Update()
     {

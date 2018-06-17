@@ -15,9 +15,16 @@ namespace Task {
 
 		private Dictionary <string, SelficientEvent> eventDictionary;
 		private static EventManager eventManager;
-
-
-		private static EventManager instance
+        private static bool created = false;
+        void Awake()
+        {
+            if (!created)
+            {
+                DontDestroyOnLoad(gameObject);
+                created = true;
+            }
+        }
+        private static EventManager instance
 		{
 			get{
 				if (!eventManager) {

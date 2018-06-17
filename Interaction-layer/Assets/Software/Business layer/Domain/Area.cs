@@ -2,14 +2,14 @@
 
 namespace Business.Domain
 {
-	public class Area
+    [Serializable]
+
+    public class Area
 	{
-		public Hardware[] hardwareList;
-		public string name;
+		public Hardware[] hardware;
+		public string areaname;
 		public string id;
-		public int x;
-		public int y;
-		public int z;
+
 	}
 }
 

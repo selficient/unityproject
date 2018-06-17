@@ -21,7 +21,7 @@ namespace Presentation {
 		private UnityAction<System.Object> buildHardwareLayer;
 		public GameObject sensorPrefab;
 		public GameObject doorPrefab;
-		private int interactionLayerId = 14;
+		private int interactionLayerId = 15;
 		void Awake() {
 
 			buildHardwareLayer = new UnityAction<System.Object> (BuildArea);
@@ -47,8 +47,8 @@ namespace Presentation {
 		void BuildArea (System.Object area) { // TODO: Support voor andere dingen dan Sensors toevoegen.
 			print ("Build hardware layer here!");
 			Area newArea = area as Area;
-			Hardware[] hardwares = newArea.hardwareList;
-			GameObject areaObject = GameObject.Find (newArea.name);
+			Hardware[] hardwares = newArea.hardware;
+			GameObject areaObject = GameObject.Find (newArea.areaname);
 			try {
 				foreach (Hardware hardware in hardwares) {
 
@@ -67,7 +67,7 @@ namespace Presentation {
 					var interactiveElement = GameObject.Find (hardware.name); 
 
 					if (interactiveElement != null) {
-						//interactiveElement.layer = interactionLayerId; // interaction layer
+						interactiveElement.layer = interactionLayerId; // interaction layer
 						interactiveElement.SetActive (false);
 
 						/*

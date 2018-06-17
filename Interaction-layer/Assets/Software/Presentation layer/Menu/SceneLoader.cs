@@ -7,23 +7,36 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour {
-    UnityAction<System.Object> unityAction;
     AsyncOperation manager;
     // Use this for initialization
     void Start () {
-        unityAction = new UnityAction<System.Object>(StartRendering);
-        EventManager.StartListening("startSceneRendering", StartRendering);
+        StartCoroutine("load");
+        StartCoroutine("LoadLevelProgress");
+     
+    }
+    IEnumerator load()
+    {
         manager = SceneManager.LoadSceneAsync("test", LoadSceneMode.Single);
         manager.allowSceneActivation = false;
-    }
 
-    private void StartRendering(object arg0)
+        yield return manager;
+    }
+    IEnumerator LoadLevelProgress()
     {
-        manager.allowSceneActivation = true;
+        while (!manager.isDone)
+        {
+            if (manager.progress >= 0.9f)
+                break;
+
+            Debug.Log("Loading scene:" + manager.progress);
+
+            yield return null;
+        }
+
+        Debug.Log("Loading complete");
+        EventManager.TriggerEvent("sceneRendered", manager);
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+   
+
 }

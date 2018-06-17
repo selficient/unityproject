@@ -23,11 +23,19 @@ namespace Business {
 				Debug.Log ("Error loading objects");
 			}
 			else {
-				Hardware[] hardware = JsonHelper.FromJson<Hardware> (www.downloadHandler.text);
+                Area[] areas = JsonHelper.FromJson<Area>(www.downloadHandler.text);
+              //  Hardware[] hardware = areas[0].hardwareList;
 				Debug.Log (www.downloadHandler.text);
-				Area area = new Area () { name = "LivingRoom", x = 25, y = 25, z = 10, hardwareList = hardware };
+               /* foreach (Area area in areas)
+                {
+                    foreach(Hardware hardware in area.hardware)
+                    {
+                        Debug.Log(hardware);
+                    }
+                }*/
+			//	Area area = new Area () { name = "LivingRoom", x = 25, y = 25, z = 10, hardware = hardware };
 			
-				EventManager.TriggerEvent ("triggerHardwareBuild", area as System.Object);
+				EventManager.TriggerEvent ("triggerHardwareBuild", areas[0] as System.Object);
 				EventManager.TriggerEvent ("loading", true);
 			}
 		}
@@ -59,8 +67,9 @@ namespace Business {
 			//} else {
 			yield return new WaitForSeconds(2); // simuleer 2 seconden wachttijd
 			Debug.Log ("Load dataset in voor dashboard");
+            Debug.Log(datasetId);
 			EventManager.TriggerEvent ("showInteractiveLoader", false);
-			EventManager.TriggerEvent ("datasetLoaded", null);
+			EventManager.TriggerEvent ("datasetLoaded-"+datasetId, null);
 
 
 		}
