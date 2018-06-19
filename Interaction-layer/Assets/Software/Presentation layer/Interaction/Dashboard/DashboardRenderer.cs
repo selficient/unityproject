@@ -14,7 +14,7 @@ using UnityEngine.EventSystems;
 
 namespace Presentation.Dashboard
 {
-	public class DashboardRenderer
+	public class DashboardRenderer : IPointerClickHandler
 	{
 		private GameObject dataPanel;
 		private GameObject infoPanel;
@@ -38,14 +38,13 @@ namespace Presentation.Dashboard
 			mainCanvas = new GameObject("Canvas");
 			mainCanvas.name = "dasbhoard-"+hardwareObject.name;
             mainCanvas.layer = this.uiLayer;
-
+            
             Canvas c = mainCanvas.AddComponent<Canvas>();
 			c.renderMode = RenderMode.WorldSpace;
             
 			mainCanvas.AddComponent<CanvasScaler> ().dynamicPixelsPerUnit = 1.75f;
 			mainCanvas.AddComponent<GvrPointerGraphicRaycaster>();
            // mainCanvas.AddComponent<EventTrigger>();
-           // DashboardGazeDetect detection = mainCanvas.AddComponent<DashboardGazeDetect>();
             //RecalculateCanvasPosition (newCanvas, hardwareObject);
 
             dataPanel = RenderPanel (renderOnTop, mainCanvas.name + "-data", backgroundColor);
@@ -245,6 +244,10 @@ namespace Presentation.Dashboard
 
         }
 
-	}
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
 

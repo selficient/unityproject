@@ -83,7 +83,6 @@
     <Compile Include="Assets\GoogleVR\Legacy\Editor\Audio\GvrAudioRoomEditor.cs" />
     <Compile Include="Assets\GoogleVR\Legacy\Editor\Audio\GvrAudioSoundfieldEditor.cs" />
     <Compile Include="Assets\GoogleVR\Legacy\Editor\Audio\GvrAudioSourceEditor.cs" />
-    <Compile Include="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
     <None Include="Assets\GoogleARCore\Editor\AppDependencies.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Tjibbe/Documents/GitHub/unityproject/Interaction-layer/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

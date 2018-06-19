@@ -3,6 +3,7 @@ using VRStandardAssets.Utils;
 using Presentation;
 using Task;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 namespace VRStandardAssets.Examples
 {
@@ -11,7 +12,6 @@ namespace VRStandardAssets.Examples
 
 	public class InteractionObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-              
 		private bool inViewport = false;
 		private Camera cam; 
 		void Start(){
@@ -25,6 +25,7 @@ namespace VRStandardAssets.Examples
 		#region IPointerExitHandler implementation
 		public void OnPointerExit (PointerEventData eventData)
 		{
+            EventManager.TriggerEvent("disableWalking", true);
 			this.HandleOut ();
 		}
 		#endregion
@@ -33,6 +34,7 @@ namespace VRStandardAssets.Examples
 
 		public void OnPointerEnter (PointerEventData eventData)
 		{
+            EventManager.TriggerEvent("disableWalking", false);
 			this.HandleOver ();
 		}
 

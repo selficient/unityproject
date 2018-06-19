@@ -306,12 +306,12 @@
     <Compile Include="Assets\Software\Business layer\Service\IDataService.cs" />
     <Compile Include="Assets\Software\Business layer\Service\TestDataService.cs" />
     <Compile Include="Assets\Software\Presentation layer\ActiveRecticle.cs" />
+    <Compile Include="Assets\Software\Presentation layer\Camera\AutoCloseDashboard.cs" />
     <Compile Include="Assets\Software\Presentation layer\Camera\Cardboard\ARTrackingController.cs" />
     <Compile Include="Assets\Software\Presentation layer\Camera\Cardboard\Autowalk.cs" />
     <Compile Include="Assets\Software\Presentation layer\Camera\Effect\Grayscale.cs" />
     <Compile Include="Assets\Software\Presentation layer\HardwareBuilder.cs" />
     <Compile Include="Assets\Software\Presentation layer\Interaction\Dashboard\CameraFacingBillboard.cs" />
-    <Compile Include="Assets\Software\Presentation layer\Interaction\Dashboard\DashboardGazeDetect.cs" />
     <Compile Include="Assets\Software\Presentation layer\Interaction\Dashboard\DashboardInteraction.cs" />
     <Compile Include="Assets\Software\Presentation layer\Interaction\Dashboard\DashboardRenderer.cs" />
     <Compile Include="Assets\Software\Presentation layer\Interaction\DoorInteraction.cs" />
@@ -328,8 +328,6 @@
     <Compile Include="Assets\Software\Presentation layer\Outliner.cs" />
     <Compile Include="Assets\Software\Task layer\DataEvent.cs" />
     <Compile Include="Assets\Software\Task layer\EventManager.cs" />
-    <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\VRMouseLook.cs" />
     <Compile Include="Assets\VRSampleScenes\Scripts\Common\SessionData.cs" />
     <Compile Include="Assets\VRSampleScenes\Scripts\Examples\ExampleRenderScale.cs" />
     <Compile Include="Assets\VRSampleScenes\Scripts\Examples\ExampleRotation.cs" />

@@ -25,10 +25,14 @@ How to get started with this script?:
 
 using UnityEngine;
 using System.Collections;
+using Task;
+using UnityEngine.Events;
+using System;
 
 public class Autowalk : MonoBehaviour
 {
     private const int RIGHT_ANGLE = 90;
+    private UnityAction<System.Object> disableViewClick;
 
     // This variable determinates if the player will move or not 
     private bool isWalking = false;
@@ -42,65 +46,30 @@ public class Autowalk : MonoBehaviour
     [Tooltip("Activate this checkbox if the player shall move when the Cardboard trigger is pulled.")]
     public bool walkWhenTriggered;
 
-    [Tooltip("Activate this checkbox if the player shall move when he looks below the threshold.")]
-    public bool walkWhenLookDown;
-
-    [Tooltip("This has to be an angle from 0° to 90°")]
-    public double thresholdAngle;
-
-    [Tooltip("Activate this Checkbox if you want to freeze the y-coordiante for the player. " +
-             "For example in the case of you have no collider attached to your CardboardMain-GameObject" +
-             "and you want to stay in a fixed level.")]
-    public bool freezeYPosition;
-
-    [Tooltip("This is the fixed y-coordinate.")]
-    public float yOffset;
-
+    private bool CanWalk = true;
 	//#if !UNITY_EDITOR
 
     void Start()
     {
 		controller = this.GetComponent<CharacterController> ();
+        EventManager.StartListening("disableWalking", DisableWalking);
+
+    }
+
+    private void DisableWalking(object arg0)
+    {
+        bool test = Convert.ToBoolean(arg0);
+        CanWalk = test;
     }
 
     void Update()
     {
         // Walk when the Cardboard Trigger is used 
-        if (walkWhenTriggered && !walkWhenLookDown && !isWalking && Input.GetButtonDown("Fire1"))
+        if (walkWhenTriggered && !isWalking && Input.GetButtonDown("Fire1") && CanWalk)
         {
             isWalking = true;
         }
-        else if (walkWhenTriggered && !walkWhenLookDown && isWalking && Input.GetButtonDown("Fire1"))
-        {
-            isWalking = false;
-        }
-
-        // Walk when player looks below the threshold angle 
-        if (walkWhenLookDown && !walkWhenTriggered && !isWalking &&
-            mainCamera.transform.eulerAngles.x >= thresholdAngle &&
-            mainCamera.transform.eulerAngles.x <= RIGHT_ANGLE)
-        {
-            isWalking = true;
-        }
-        else if (walkWhenLookDown && !walkWhenTriggered && isWalking &&
-                 (mainCamera.transform.eulerAngles.x <= thresholdAngle ||
-                 mainCamera.transform.eulerAngles.x >= RIGHT_ANGLE))
-        {
-            isWalking = false;
-        }
-
-        // Walk when the Cardboard trigger is used and the player looks down below the threshold angle
-        if (walkWhenLookDown && walkWhenTriggered && !isWalking &&
-            mainCamera.transform.eulerAngles.x >= thresholdAngle &&
-            Input.GetButtonDown("Fire1") &&
-            mainCamera.transform.eulerAngles.x <= RIGHT_ANGLE)
-        {
-            isWalking = true;
-        }
-        else if (walkWhenLookDown && walkWhenTriggered && isWalking &&
-                 mainCamera.transform.eulerAngles.x >= thresholdAngle &&
-                 (Input.GetButtonDown("Fire1") ||
-                 mainCamera.transform.eulerAngles.x >= RIGHT_ANGLE))
+        else if (walkWhenTriggered && isWalking && Input.GetButtonDown("Fire1"))
         {
             isWalking = false;
         }
@@ -113,10 +82,6 @@ public class Autowalk : MonoBehaviour
 			controller.Move(rotation * direction);
         }
 
-        if (freezeYPosition)
-        {
-			controller.Move (new Vector3 (transform.position.x, yOffset, transform.position.z));
-        }
     }
 	//#endif
 }

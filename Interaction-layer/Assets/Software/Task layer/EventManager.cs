@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -70,6 +71,11 @@ namespace Task {
 				thisEvent.Invoke (data);
 			}
 		}
-	}
+
+        internal static void StartListening(string v, object disableWalking)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 }
