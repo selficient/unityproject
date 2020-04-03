@@ -21,11 +21,11 @@ namespace Presentation
 		#region Interactable implementation
 		public void On ()
 		{
-			light.intensity = 2;
+			light.enabled = true;
 		}
 		public void Off ()
 		{
-			light.intensity = 0;
+			light.enabled = false;
 		}
 		public void Init ()
 		{

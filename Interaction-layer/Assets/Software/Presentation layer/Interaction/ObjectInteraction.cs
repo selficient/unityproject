@@ -20,19 +20,16 @@ namespace Presentation
 		public Hardware hardware;
 		private bool isActive;
 		private Animator anim;
-		public string interactionName = "deur";
+		public string interactionName;
 		Interaction interaction;
 
 		void Start(){
-			//this.anim = gameObject.GetComponent<Animator> (); 
-		//	this.anim.transform.position = gameObject.transform.position;
 		}
         private void Awake ()
         {
 			interaction = hardware.interactions.Find (x => x.name.Equals(interactionName));
-			//anim = gameObject.GetComponent<Animator> ();
 			this.interactable.Init();
-			this.UpdateState (interaction);
+			this.UpdateState (interaction, false);
         }
 
 		#region IPointerEnterHandler implementation
@@ -99,28 +96,32 @@ namespace Presentation
 			
 
 			//if (isActive) {
-				Debug.Log ("can handle this click door status:" + hardware.state);
+				Debug.Log ("can handle this click door status:" + hardware.state.code + ", " + gameObject.ToString());
 				SaveState (interaction);
 			//}
 
         }
-		private void UpdateState(Interaction interaction){
+		private void UpdateState(Interaction interaction, bool click){
 			if (interaction != null) {
-				if (hardware.state.code.Equals("0")) { // dicht dus
+				if (hardware.state.code.Equals("0"))
+				{ 
 					this.interactable.On();
-				} else if (hardware.state.code.Equals("1")) {
-					this.interactable.Off ();
 				}
-
+				else if (hardware.state.code.Equals("1"))
+				{
+					if(click) {
+						this.interactable.Off();
+					}
+				}
 			}
 		}
 		private void SaveState(Interaction interaction) {
 			if (hardware.state.code.Equals("0")) {
 				hardware.state.code = "1";
-				UpdateState (interaction);
+				UpdateState (interaction, true);
 			} else if(hardware.state.code.Equals("1")) {
 				hardware.state.code = "0";
-				UpdateState (interaction);
+				UpdateState (interaction, true);
 			}
 			if (this.interactable.WantsUpdate()) { // wanneer er geen update gewenst is , kan dit op false worden gezet.
 				EventManager.TriggerEvent ("updateHardwareState", new KeyValuePair<Interaction, Hardware>(interaction, hardware));

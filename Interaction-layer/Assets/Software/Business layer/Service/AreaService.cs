@@ -14,8 +14,8 @@ namespace Business {
 		private UnityAction<System.Object> loadHardwareDataset;
 
 		[SerializeField] private string uri;
-		[SerializeField] string stateUri = "http://localhost:3000/service/updatestate?apikey=kdfjadslj2xk";
-		[SerializeField] string datasetUri = "http://localhost:3000/dashboard/#/api/graph";
+		[SerializeField] string stateUri = "http://localhost:3001/service/updatestate";
+		[SerializeField] string datasetUri = "http://localhost:3000/api?type=line&id=d1";
 		[SerializeField] private string areaId; // TODO: De NoSi zo aanpassen dat er per area in geladen kan worden.
 		private IDataService serviceImplementation;
 		// Use this for initialization

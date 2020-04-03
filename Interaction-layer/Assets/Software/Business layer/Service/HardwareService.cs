@@ -23,18 +23,20 @@ namespace Business {
 				Debug.Log ("Error loading objects");
 			}
 			else {
-                Area[] areas = JsonHelper.FromJson<Area>(www.downloadHandler.text);
-              //  Hardware[] hardware = areas[0].hardwareList;
-				Debug.Log (www.downloadHandler.text);
-               /* foreach (Area area in areas)
-                {
-                    foreach(Hardware hardware in area.hardware)
-                    {
-                        Debug.Log(hardware);
-                    }
-                }*/
-			//	Area area = new Area () { name = "LivingRoom", x = 25, y = 25, z = 10, hardware = hardware };
-			
+				Debug.Log(www.downloadHandler.text);
+				Area[] areas = JsonHelper.FromJson<Area>(www.downloadHandler.text);
+				Debug.Log(areas.ToString());
+
+				//  Hardware[] hardware = areas[0].hardwareList;
+				/* foreach (Area area in areas)
+				 {
+					 foreach(Hardware hardware in area.hardware)
+					 {
+						 Debug.Log(hardware);
+					 }
+				 }*/
+				//	Area area = new Area () { name = "LivingRoom", x = 25, y = 25, z = 10, hardware = hardware };
+
 				EventManager.TriggerEvent ("triggerHardwareBuild", areas[0] as System.Object);
 				EventManager.TriggerEvent ("loading", true);
 			}

@@ -10,16 +10,18 @@ namespace Presentation
 		public static Interactable GetInteraction(GameObject interactiveElement, Hardware hardware){
 			Interactable interactable = null;
 			if (hardware.type.name == "Door") {
-				RuntimeAnimatorController deurController = (RuntimeAnimatorController)Resources.Load ("Animation/"+hardware.name, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
-				if(deurController != null) {
-					var animation = interactiveElement.AddComponent<Animator> ();
-					animation.runtimeAnimatorController = deurController;
-					interactable = new DoorInteraction(animation);
+				//RuntimeAnimatorController deurController = (RuntimeAnimatorController)Resources.Load ("Animation/"+hardware.name, typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+				//if(deurController != null) {
+				//	var animation = interactiveElement.AddComponent<Animator> ();
+				//	animation.runtimeAnimatorController = deurController;
+				//	interactable = new DoorInteraction(animation);
 
-				}else {
-					throw new UnityException("Animatie voor deur kon niet gevonden worden"); 
-				}
+				//}else {
+				//	throw new UnityException("Animatie voor deur kon niet gevonden worden"); 
+				//}
 
+				Animator animatorController = interactiveElement.GetComponent<Animator>();
+				interactable = new DoorInteraction(animatorController);
 			}
 
 			if(hardware.type.name == "Light") {

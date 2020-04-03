@@ -25,7 +25,7 @@ namespace Task {
                 created = true;
             }
         }
-        private static EventManager instance
+        public static EventManager instance
 		{
 			get{
 				if (!eventManager) {
